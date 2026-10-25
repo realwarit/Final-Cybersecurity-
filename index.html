@@ -1,0 +1,1259 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cyber Final Prep</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;700;800&family=Prompt:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F4F1EA;--card:#FFFFFF;--ink:#16161A;--muted:#5E5C66;--line:#16161A;--fire:#FF5A1F;--fire-soft:#FFE3D6;--blue:#2B59FF;--blue-soft:#DDE5FF;--ok:#12A150;--ok-soft:#D7F5E3;--bad:#E1264B;--bad-soft:#FFDCE3;--shadow:4px 4px 0 var(--line)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121216;--card:#1C1C22;--ink:#F3F1EC;--muted:#A5A3AE;--line:#F3F1EC;--fire-soft:#3A2016;--blue-soft:#1A2350;--ok-soft:#0F3322;--bad-soft:#3D1420}}
+:root[data-theme="dark"]{--bg:#121216;--card:#1C1C22;--ink:#F3F1EC;--muted:#A5A3AE;--line:#F3F1EC;--fire-soft:#3A2016;--blue-soft:#1A2350;--ok-soft:#0F3322;--bad-soft:#3D1420}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Prompt',system-ui,sans-serif;font-size:16px;line-height:1.65}
+h1,h2,h3,.k{font-family:'Kanit','Prompt',sans-serif;letter-spacing:.2px}
+.wrap{max-width:860px;margin:0 auto;padding:16px 16px 80px}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:8px 0 18px}
+.logo{font-family:'Kanit';font-weight:800;font-size:28px;line-height:1}
+.logo span{color:var(--fire)}
+.sub{color:var(--muted);font-size:14px}
+.tabs{display:flex;gap:10px;margin-bottom:18px;position:sticky;top:0;z-index:5;background:var(--bg);padding:8px 0}
+.tab{flex:1;font-family:'Kanit';font-weight:700;font-size:18px;padding:12px;border:2px solid var(--line);border-radius:16px;background:var(--card);color:var(--ink);cursor:pointer}
+.tab.on{background:var(--ink);color:var(--bg);box-shadow:var(--shadow)}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:4px 2px 12px;scrollbar-width:none}
+.chip{flex:0 0 auto;font-family:'Kanit';font-weight:700;border:2px solid var(--line);border-radius:999px;background:var(--card);color:var(--ink);padding:6px 14px;cursor:pointer}
+.chip.on{background:var(--fire);color:#fff;border-color:var(--fire)}
+.card{background:var(--card);border:2px solid var(--line);border-radius:20px;padding:20px;box-shadow:var(--shadow);margin-bottom:18px}
+.badge{display:inline-block;font-family:'Kanit';font-weight:700;font-size:13px;background:var(--fire-soft);color:var(--fire);border-radius:999px;padding:2px 12px}
+.ch-title{font-size:26px;font-weight:800;margin:8px 0 2px;line-height:1.3}
+.en{color:var(--muted);font-size:14px;margin-bottom:12px}
+.core{background:var(--blue-soft);border-radius:14px;padding:12px 14px;margin:8px 0 4px}
+.note{background:var(--fire-soft);border-radius:14px;padding:10px 14px;margin:10px 0;font-size:14px}
+.sec h3{font-size:19px;font-weight:700;margin:20px 0 6px}
+.sec ul{margin:0;padding-left:20px}.sec li{margin:4px 0}
+b{font-weight:600;color:var(--ink)}
+code{font-family:ui-monospace,Menlo,monospace;font-size:.88em;background:var(--bg);border-radius:6px;padding:1px 5px;word-break:break-word}
+.box{border:2px dashed var(--line);border-radius:14px;padding:12px 14px;margin-top:16px}
+.box h3{margin:0 0 6px;font-size:17px}
+.box.tip{border-color:var(--fire);border-style:solid;background:var(--fire-soft)}
+.btn{font-family:'Kanit';font-weight:700;font-size:17px;border:2px solid var(--line);border-radius:14px;padding:12px 18px;background:var(--fire);color:#fff;cursor:pointer;box-shadow:var(--shadow)}
+.btn:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--line)}
+.btn.ghost{background:var(--card);color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.pick{text-align:left;border:2px solid var(--line);border-radius:16px;background:var(--card);color:var(--ink);padding:14px;cursor:pointer;font-family:'Prompt'}
+.pick .k{font-weight:800;font-size:20px}
+.pick small{display:block;color:var(--muted);line-height:1.4}
+.best{font-family:'Kanit';font-weight:700;color:var(--ok);font-size:13px}
+.hero{background:var(--ink);color:var(--bg);border-radius:22px;padding:22px;margin-bottom:18px}
+.hero h2{margin:0 0 6px;font-size:26px}.hero p{margin:0 0 14px;opacity:.85}
+.bar{height:12px;background:var(--bg);border:2px solid var(--line);border-radius:999px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--fire);transition:width .3s}
+.qtop{display:flex;justify-content:space-between;align-items:center;margin:4px 0 10px;font-family:'Kanit';font-weight:700}
+.streak{color:var(--fire)}
+.qtext{font-size:20px;font-weight:600;line-height:1.5;margin:10px 0 16px}
+.opt{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;border:2px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);padding:12px 14px;margin-bottom:10px;font:inherit;cursor:pointer}
+.opt .L{flex:0 0 30px;height:30px;border-radius:9px;border:2px solid var(--line);display:grid;place-items:center;font-family:'Kanit';font-weight:800}
+.opt.ok{background:var(--ok-soft);border-color:var(--ok)}.opt.ok .L{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opt.bad{background:var(--bad-soft);border-color:var(--bad)}.opt.bad .L{background:var(--bad);color:#fff;border-color:var(--bad)}
+.opt:disabled{cursor:default}
+.exp{border-radius:14px;padding:14px;margin-top:6px}
+.exp.ok{background:var(--ok-soft)}.exp.bad{background:var(--bad-soft)}
+.exp .k{font-weight:800;font-size:18px}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.score{font-family:'Kanit';font-weight:800;font-size:64px;line-height:1;color:var(--fire)}
+.rev{border-top:2px dashed var(--line);padding:12px 0}
+.hidden{display:none}
+.theme{border:2px solid var(--line);background:var(--card);color:var(--ink);border-radius:12px;padding:6px 10px;cursor:pointer;font-size:18px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><div><div class="logo">CYBER<span>FINAL</span> 🔥</div><div class="sub">ความมั่นคงปลอดภัยไซเบอร์ · ติวก่อนสอบปลายภาค</div></div><button class="theme" id="theme" aria-label="สลับธีม">🌓</button></header>
+<div class="tabs"><button class="tab on" data-t="read">📘 เนื้อหา</button><button class="tab" data-t="quiz">🔥 ข้อสอบ</button></div>
+<section id="read"><div class="chips" id="chips"></div><div id="chapter"></div></section>
+<section id="quiz" class="hidden"></section>
+</div>
+<script>
+const CH = [
+{n:1,t:"พื้นฐานความมั่นคงปลอดภัยเครือข่าย",en:"Introduction to Network Security",
+core:"ไม่มีระบบไหนปลอดภัย 100% เป้าหมายคือ <b>ลดความเสี่ยงให้อยู่ในระดับที่รับได้</b> และความปลอดภัยเป็น <b>กระบวนการต่อเนื่อง</b> ไม่ใช่ของที่ซื้อแล้วจบ",
+s:[
+{h:"3 คำที่ชอบสับสน",p:[
+"<b>Information Security</b> กว้างสุด ดูแลข้อมูลทั้งดิจิทัลและกระดาษ",
+"<b>Cybersecurity</b> ดูแลระบบคอมพิวเตอร์ เครือข่าย และข้อมูลในโลกดิจิทัล",
+"<b>Network Security</b> แคบสุด เน้นกันคนเข้าเครือข่ายโดยไม่ได้รับอนุญาต",
+"ทำไมสำคัญ: ข้อมูลอ่อนไหววิ่งผ่านเครือข่าย, ข้อมูลรั่วมีต้นทุนสูง, มีกฎหมาย (PDPA, GDPR), ธุรกิจต้องไม่หยุด"]},
+{h:"CIA Triad — หัวใจของวิชา",p:[
+"<b>C = Confidentiality</b> (ความลับ) คนไม่มีสิทธิ์ห้ามเห็น → ใช้ <b>การเข้ารหัส, Access Control</b>",
+"<b>I = Integrity</b> (ความถูกต้องครบถ้วน) ห้ามถูกแก้โดยไม่ได้รับอนุญาต → ใช้ <b>Hash, Digital Signature, FIM</b>",
+"<b>A = Availability</b> (ความพร้อมใช้) ใช้ได้เมื่อต้องการ → ใช้ <b>Redundancy, Load Balancer, Backup, กัน DDoS</b>",
+"ตัวอย่าง: ดักฟังรหัสผ่าน = ละเมิด C | แก้เกรดในฐานข้อมูล = ละเมิด I | DDoS เว็บล่ม = ละเมิด A"]},
+{h:"Threat / Vulnerability / Attack / Risk",p:[
+"<b>Threat</b> = สิ่งที่อาจทำให้เสียหาย (เช่น แฮกเกอร์, น้ำท่วม)",
+"<b>Vulnerability</b> = จุดอ่อน (เช่น ไม่ได้ patch, รหัสผ่านอ่อน)",
+"<b>Attack</b> = การลงมือใช้ประโยชน์จากจุดอ่อน",
+"<b>Risk</b> = โอกาส × ผลกระทบ (ตาม NIST SP 800-30)",
+"<b>CVSS v3.1</b> ให้คะแนนความรุนแรงช่องโหว่ 0.0–10.0 (Critical = 9.0–10.0)",
+"ประเภทการโจมตี: Passive/Active, Insider/Outsider, APT (เจาะจง อดทน แนบเนียน), Opportunistic (หว่านแห)"]},
+{h:"Defense in Depth & Policy",p:[
+"<b>Defense in Depth</b> = ป้องกันหลายชั้น: Perimeter → Network → Host → Application → Data ชั้นหนึ่งพัง ยังมีชั้นถัดไป",
+"ลำดับเอกสาร (บนลงล่าง): <b>Policy</b> (ทิศทางใหญ่) → <b>Standard</b> (ข้อบังคับ) → <b>Guideline</b> (คำแนะนำ) → <b>Procedure</b> (ขั้นตอนทำจริง)",
+"นโยบายที่เจอบ่อย: AUP, Password, Remote Access, Data Classification, Incident Response, BYOD, Patch Management",
+"<b>Least Privilege</b> = ให้สิทธิ์เท่าที่จำเป็นต่อการทำงานเท่านั้น"]},
+{h:"Framework มาตรฐาน",p:[
+"<b>NIST CSF 2.0</b> มี <b>6 ฟังก์ชัน</b>: Govern, Identify, Protect, Detect, Respond, Recover (Govern เพิ่มมาใน 2.0) — แบบสมัครใจ ยืดหยุ่น",
+"<b>ISO/IEC 27001:2022</b> = มาตรฐาน <b>ISMS</b> ใช้วงจร <b>PDCA</b> มี <b>93 controls</b> ใน Annex A และ <b>ขอใบรับรองได้</b>",
+"กฎหมายไทย: PDPA, พ.ร.บ.คอมพิวเตอร์, พ.ร.บ.ไซเบอร์ | บัตรเครดิต: PCI-DSS"]},
+{h:"ทีมความปลอดภัย",p:[
+"<b>CISO</b> ผู้บริหารสูงสุดด้านความปลอดภัย",
+"<b>Blue Team</b> = ฝั่งป้องกัน (SOC, Security Engineer, Incident Responder)",
+"<b>Red Team</b> = ฝั่งจำลองโจมตี (Pentester)",
+"<b>Purple Team</b> = เชื่อม Red กับ Blue ให้เรียนรู้ร่วมกัน | <b>GRC</b> = ดูแลธรรมาภิบาล ความเสี่ยง และการปฏิบัติตามกฎ",
+"ใบรับรอง: Security+, CEH, OSCP, CISSP, CISM"]}],
+f:["Availability = MTBF / (MTBF + MTTR) × 100%","Risk = Threat × Vulnerability × Impact หรือ Likelihood × Impact","99.9% ≈ ล่ม 8.76 ชม./ปี | 99.99% ≈ 52.6 นาที/ปี | 99.999% ≈ 5.26 นาที/ปี"],
+tip:["จับคู่เหตุการณ์กับ C / I / A","NIST CSF 2.0 มี 6 ฟังก์ชัน (มี Govern)","ISO 27001 = ISMS, PDCA, 93 controls, ขอ cert ได้","ลำดับ Policy → Standard → Guideline → Procedure","Purple Team ทำอะไร"]},
+
+{n:2,t:"โปรโตคอลเครือข่ายและการวิเคราะห์ทราฟฟิก",en:"Network Protocols & Traffic Analysis",
+core:"ต้องรู้ว่าโปรโตคอลทำงานยังไงก่อน ถึงจะมองออกว่าตรงไหนผิดปกติและโดนโจมตีได้",
+s:[
+{h:"OSI กับการโจมตีแต่ละชั้น",p:[
+"<b>L7 Application</b>: XSS, SQL Injection",
+"<b>L4 Transport</b>: SYN Flood, DoS/DDoS",
+"<b>L3 Network</b>: IP Spoofing, เปลี่ยนเส้นทาง",
+"<b>L2 Data Link</b>: ARP Spoofing, ดักฟังใน LAN",
+"คำสั่ง Linux ดูสถานะ: <code>ip link</code>, <code>arp</code>, <code>ip route</code>, <code>ss</code>, <code>netstat</code>"]},
+{h:"IP / TCP / UDP / ICMP",p:[
+"<b>TCP</b> ต้องจับมือ 3 ทาง (SYN → SYN-ACK → ACK) — <b>SYN Flood</b> คือส่ง SYN รัวๆ แต่ไม่ส่ง ACK ให้คิวเต็ม",
+"<b>UDP</b> ไม่มีการเชื่อมต่อ ปลอม IP ง่าย → ใช้ทำ <b>Amplification</b> (ขอเล็ก ตอบใหญ่) และ UDP Flood",
+"<b>ICMP</b> (ping): Ping of Death, <b>Smurf</b> (ping ไป broadcast โดยปลอม IP เหยื่อ), ICMP Tunneling (แอบส่งข้อมูล)",
+"IP header ฟิลด์สำคัญ: TTL, Source IP, Protocol, Fragment Offset"]},
+{h:"เครื่องมือวิเคราะห์",p:[
+"<b>tcpdump</b> ดักแพ็กเก็ตใน CLI ใช้ BPF filter",
+"<b>Wireshark</b> แบบ GUI (มี TShark เป็น CLI) ใช้ display filter",
+"<b>nmap</b> สแกน: ping, SYN (-sS), connect (-sT), UDP (-sU), version (-sV), OS (-O), script"]},
+{h:"Packet Inspection & DPI",p:[
+"3 ระดับ: <b>Shallow</b> (ดู header) → <b>Stateful</b> (จำสถานะการเชื่อมต่อ) → <b>Deep</b> (ดูถึง payload)",
+"<b>DPI</b> ใช้ใน ISP, NGFW, IDS/IPS, กรองเนื้อหา เครื่องมือ: nDPI, Suricata, ntopng",
+"ข้อจำกัด: DPI อ่าน TLS ไม่ได้ ถ้าไม่ทำ SSL Inspection และมีประเด็นความเป็นส่วนตัว/กฎหมาย"]},
+{h:"Traffic Analysis & Anomaly",p:[
+"ขั้นตอน: เก็บ → ประมวลผล → วิเคราะห์ → ตอบสนอง",
+"ต้องมี <b>Baseline</b> (ค่าปกติ) เช่น PPS, bandwidth, สัดส่วนโปรโตคอล, top talkers แล้วดูค่าที่เกินส่วนเบี่ยงเบนมาตรฐาน",
+"<b>NetFlow</b> เก็บสรุป flow ด้วย <b>5-tuple</b>: Src IP, Dst IP, Src Port, Dst Port, Protocol",
+"รูปแบบผิดปกติ: PPS พุ่ง, Port Scan, <b>Beaconing</b> (ติดต่อออกเป็นจังหวะสม่ำเสมอ = สัญญาณมัลแวร์คุย C2), Exfiltration, DNS Tunneling, Lateral Movement"]},
+{h:"Multimedia: RTP / SIP / SRTP / RTSP",p:[
+"<b>RTP</b> ส่งเสียง/วิดีโอ, <b>RTCP</b> รายงานคุณภาพ (jitter)",
+"<b>SIP</b> ตั้ง/วางสาย VoIP — ภัย: scanning, brute force, ดักฟัง, <b>Toll Fraud</b> (แอบโทรออกเก็บเงินเรา), <b>SPIT</b> (สแปมทางโทรศัพท์)",
+"<b>SRTP</b> = RTP ที่เข้ารหัสและยืนยันตัวตน",
+"<b>RTSP</b> ควบคุมสตรีม เช่น กล้อง IP"]},
+{h:"DNS & DHCP",p:[
+"Record: <b>A</b> (IPv4), <b>AAAA</b> (IPv6), <b>MX</b> (เมล), <b>CNAME</b> (ชื่อแฝง), <b>NS</b>, <b>TXT</b>, <b>PTR</b> (IP→ชื่อ), <b>SOA</b>",
+"โจมตี DNS: Cache Poisoning, Hijacking, Amplification, Tunneling, NXDOMAIN flood, Zone Transfer (AXFR) รั่ว",
+"<b>DNSSEC</b> เพิ่มลายเซ็น: RRSIG, DNSKEY, DS, NSEC/NSEC3",
+"<b>DHCP DORA</b>: Discover → Offer → Request → Acknowledge",
+"โจมตี DHCP: <b>Rogue DHCP</b> (DHCP ปลอมแจก gateway ปลอม), <b>Starvation</b> (ขอ IP จนหมด)",
+"<b>DHCP Snooping</b>: ตั้งพอร์ตที่ต่อ DHCP จริงเป็น <b>trusted</b> ที่เหลือ untrusted (ส่ง Offer ไม่ได้)"]}],
+f:["Amplification Factor = ขนาดคำตอบ / ขนาดคำขอ"],
+tip:["จับคู่การโจมตีกับชั้น OSI","SYN Flood / Smurf / Amplification ต่างกันยังไง","5-tuple ของ NetFlow","Beaconing คืออะไร","DORA และ DHCP Snooping trusted port","DNS record แต่ละชนิด"]},
+
+{n:3,t:"โปรโตคอลรับส่งไฟล์และ Remote Access",en:"File Transfer & Remote Access",
+core:"FTP ส่งทุกอย่างเป็น plaintext ห้ามใช้จริง ให้ใช้ <b>SFTP / FTPS / SCP</b> และ SSH แบบใช้ key",
+s:[
+{h:"FTP",p:[
+"ใช้ 2 ช่อง: <b>Control port 21</b> (คำสั่ง) และ <b>Data port 20</b> หรือพอร์ตสุ่ม",
+"<b>Active mode</b>: server ต่อกลับมาหา client → มักโดน firewall/NAT บล็อก",
+"<b>Passive mode</b>: client ต่อไปหา server ที่พอร์ตที่ server บอกผ่าน PASV คำนวณ <b>p1×256+p2</b> เช่น (195,149) = 50,069",
+"รหัสตอบ: 220 พร้อม, 331 ขอรหัส, 230 ล็อกอินผ่าน, 530 ล็อกอินไม่ผ่าน, 226 ส่งเสร็จ, 550 ไม่พบไฟล์",
+"จุดอ่อน: ไม่เข้ารหัส (tcpdump เห็น user/pass), anonymous, FTP bounce, MITM, ไม่ตรวจ integrity"]},
+{h:"SFTP",p:[
+"<b>ไม่ใช่ FTP + เข้ารหัส</b> แต่เป็นโปรโตคอลใหม่ที่รันเป็น subsystem ของ <b>SSH พอร์ต 22</b> พอร์ตเดียว",
+"ข้อดี: เข้ารหัสทั้งหมด, ผ่าน firewall ง่าย, ใช้ key ได้, มี <b>chroot</b> ขังผู้ใช้ในโฟลเดอร์",
+"ตั้งค่าใน <code>sshd_config</code> ด้วย <code>Match Group</code> + <code>ChrootDirectory</code> (โฟลเดอร์ chroot ต้องเป็นของ root)"]},
+{h:"FTPS",p:[
+"= FTP ที่ห่อด้วย SSL/TLS",
+"<b>Implicit FTPS</b>: พอร์ต <b>990</b>/989 เข้ารหัสตั้งแต่ต้น",
+"<b>Explicit FTPS (FTPES)</b>: พอร์ต <b>21</b> เริ่มแบบ plaintext แล้วสั่ง <b>AUTH TLS</b> อัปเกรด (RFC 4217)",
+"เหมาะกับ client รุ่นเก่า (backward compatible)"]},
+{h:"SCP / SSHFS / rsync",p:[
+"<b>SCP</b> คัดลอกไฟล์ผ่าน SSH ง่ายๆ (OpenSSH 9.0+ ข้างในใช้ SFTP แล้ว)",
+"<b>SSHFS</b> เมานต์โฟลเดอร์ปลายทางเป็นไดรฟ์ในเครื่องผ่าน FUSE",
+"<b>rsync over SSH</b> ส่งเฉพาะส่วนที่เปลี่ยน เหมาะกับ backup",
+"เลือกใช้: copy ง่ายๆ = SCP | ทำงานโต้ตอบ = SFTP | backup = rsync | แก้ไฟล์ระยะไกล = SSHFS | client เก่า = FTPS | FTP = ใช้แค่ในแล็บ"]},
+{h:"SSH",p:[
+"สร้างโดย Tatu Ylönen ปี 1995 แทน Telnet/rsh",
+"<b>3 ชั้น</b>: Transport (เข้ารหัส), Authentication (ยืนยันผู้ใช้), Connection (แยกช่อง)",
+"ลำดับ: แลกเวอร์ชัน → แลกกุญแจ (ECDH Curve25519) → ยืนยันผู้ใช้ → session เข้ารหัส",
+"Key แนะนำ: <b>Ed25519</b> | Key-based auth: <b>private key ไม่เคยออกจากเครื่อง client</b> (challenge-response)",
+"คำสั่ง: <code>ssh-keygen</code>, <code>ssh-copy-id</code>, <code>ssh-agent</code>",
+"Hardening: ปิด root login, ใช้ key อย่างเดียว, จำกัด user, cipher แข็งแรง, log ละเอียด",
+"<b>fail2ban</b> บล็อก IP ที่ล็อกอินผิดซ้ำๆ (กัน brute force)"]}],
+f:["Passive port = p1 × 256 + p2","Entropy H = L × log₂(N) เช่น 13 ตัวจาก 95 อักขระ ≈ 85.4 bits"],
+tip:["พอร์ต FTP 21/20, SFTP 22, FTPS implicit 990","SFTP ไม่ใช่ FTP+SSL","Active vs Passive FTP","Implicit vs Explicit FTPS (AUTH TLS)","เลือกเครื่องมือให้ตรงงาน","fail2ban ใช้กันอะไร"]},
+
+{n:4,t:"โปรโตคอลชั้นแอปพลิเคชัน: อีเมล เว็บ และบริการ",en:"Email, Web & Services",
+core:"อีเมลและเว็บคือจุดที่โดนโจมตีมากที่สุด เพราะเป็นจุดที่คนกับเครื่องเจอกัน การโจมตีส่วนใหญ่ <b>ไม่ได้ถอดรหัส</b> แต่หลอกจากความเชื่อใจที่อ่อนแอ",
+s:[
+{h:"อีเมล: SMTP / POP3 / IMAP",p:[
+"<b>SMTP</b> = ส่งเมล พอร์ต <b>25</b> (server↔server), <b>587</b> (submission + STARTTLS), <b>465</b> (implicit TLS) | ลำดับคำสั่ง EHLO → MAIL FROM → RCPT TO → DATA → QUIT",
+"<b>POP3</b> = ดึงเมลลงเครื่อง (มักลบจาก server) พอร์ต 110 / POP3S 995",
+"<b>IMAP</b> = เก็บเมลบน server ซิงก์หลายอุปกรณ์ พอร์ต 143 / IMAPS 993",
+"ภัย SMTP เดิม: plaintext, <b>Open Relay</b>, ไม่ยืนยันผู้ส่ง, Header Injection (CRLF)"]},
+{h:"STARTTLS vs S/MIME",p:[
+"<b>STARTTLS</b> = อัปเกรดการเชื่อมต่อเป็น TLS (เข้ารหัส <b>ระหว่างทาง</b>) จุดอ่อน: <b>STARTTLS Stripping</b> → แก้ด้วย <b>MTA-STS</b> / <b>DANE</b>",
+"<b>S/MIME</b> = เข้ารหัส/เซ็น <b>เนื้อหาเมล</b> (end-to-end) ใช้ <b>Hybrid</b>: สุ่ม session key เข้ารหัสเนื้อหาด้วย AES แล้วเอา public key ผู้รับเข้ารหัส session key",
+"ทำไม hybrid: asymmetric ช้ามากกับข้อมูลใหญ่",
+"ลายเซ็น: hash เมล → เซ็นด้วย <b>private key ผู้ส่ง</b> → ผู้รับตรวจด้วย public key ผู้ส่ง"]},
+{h:"HTTPS & TLS",p:[
+"HTTP พอร์ต 80 plaintext | HTTPS = HTTP + TLS พอร์ต 443 ให้ C, I และ Authentication",
+"<b>TLS 1.3</b> handshake <b>1-RTT</b> (TLS 1.2 = 2-RTT) ใช้ <b>ECDHE</b> → มี Forward Secrecy",
+"Certificate Chain: Root CA → Intermediate CA → Server cert ตรวจลายเซ็นไล่ขึ้นไป, root ต้องอยู่ใน trust store, ดูวันหมดอายุ และการเพิกถอน (CRL/OCSP)",
+"เครื่องมือ: <code>openssl s_client</code>, <code>nmap --script ssl-enum-ciphers</code>, <code>testssl.sh</code>"]},
+{h:"OWASP Top 10 (2021)",p:[
+"A01 <b>Broken Access Control</b> (เช่น IDOR) — อันดับ 1",
+"A02 Cryptographic Failures | A03 <b>Injection</b> (SQLi, Command, XSS) | A04 Insecure Design",
+"A05 Security Misconfiguration | A06 Vulnerable & Outdated Components (เช่น Log4Shell)",
+"A07 Identification & Authentication Failures | A08 Software & Data Integrity Failures",
+"A09 Logging & Monitoring Failures | A10 <b>SSRF</b>",
+"SQLi เช่น <code>' OR '1'='1</code> → แก้ด้วย <b>Parameterized Query</b>",
+"เครื่องมือ: nikto, OWASP ZAP, curl ดู security header"]},
+{h:"SPF / DKIM / DMARC",p:[
+"<b>SPF</b> = DNS TXT บอกว่า IP ไหนส่งเมลแทนโดเมนได้ (<code>-all</code> hard fail, <code>~all</code> soft fail)",
+"<b>DKIM</b> = เซ็นเมลด้วย private key, public key อยู่ใน DNS ตาม selector",
+"<b>DMARC</b> = นโยบายเหนือ SPF+DKIM: <b>none / quarantine / reject</b> + ที่ส่งรายงาน + ตรวจ alignment",
+"ใช้ 3 ตัวร่วมกันเป็นชั้นๆ กันปลอมผู้ส่ง (spoofing)"]},
+{h:"Phishing / Spam / Spoofing",p:[
+"Spam = เมลขยะจำนวนมาก | Phishing = หลอกเอาข้อมูล | <b>Spear Phishing</b> = เจาะจงเป้าหมาย",
+"เทคนิค: ปลอมชื่อที่แสดง, โดเมนหน้าเหมือน (typosquatting), <b>Homograph</b> (ใช้อักษร Unicode หน้าตาเหมือน)",
+"<b>บัญชีจริงโดนยึด</b> ตรวจยากสุด เพราะ SPF/DKIM/DMARC ผ่านหมด",
+"สังเกต header: <code>smtp.mailfrom</code> ไม่ตรงกับ <code>header.from</code> = สัญญาณปลอม"]},
+{h:"DNSSEC",p:[
+"DNS ปกติไม่มีการตรวจความถูกต้อง → โดน Cache Poisoning ได้",
+"DNSSEC สร้าง <b>Chain of Trust</b> จาก root → .th → ac.th → โดเมน",
+"<b>DNSKEY</b> (ZSK/KSK), <b>RRSIG</b> (ลายเซ็นของ record set), <b>DS</b> (hash ของ KSK ลูกเก็บที่โซนแม่), <b>NSEC/NSEC3</b> (พิสูจน์ว่าไม่มีชื่อนั้นจริง)",
+"<code>dig +dnssec</code> ถ้าเห็น flag <b>ad</b> = ตรวจผ่าน"]}],
+f:["Diffie-Hellman: A = gᵃ mod p, B = gᵇ mod p, K = Bᵃ mod p = Aᵇ mod p","ตัวอย่าง g=5, p=23, a=6, b=15 → A=8, B=19, K=2"],
+tip:["พอร์ตอีเมลทั้งหมด","STARTTLS (ทาง) vs S/MIME (เนื้อหา)","TLS 1.3 = 1-RTT + ECDHE","OWASP A01 และ A10","บทบาท SPF/DKIM/DMARC และ policy 3 ระดับ","DS record และ flag ad"]},
+
+{n:5,t:"พื้นฐานวิทยาการเข้ารหัส",en:"Cryptography Fundamentals",
+core:"Cryptography คือรากฐานของ HTTPS, VPN, PKI และลายเซ็นดิจิทัล — <b>ความลับต้องอยู่ที่ Key ไม่ใช่การซ่อนอัลกอริทึม</b>",
+s:[
+{h:"คำศัพท์พื้นฐาน",p:[
+"เป้าหมาย: Confidentiality, Integrity, Authentication, <b>Non-repudiation</b> (ปฏิเสธไม่ได้ว่าทำ)",
+"Plaintext (ข้อความเดิม) → Encryption → Ciphertext (ข้อความลับ) → Decryption",
+"C = E<sub>K</sub>(P), P = D<sub>K</sub>(C)",
+"<b>Kerckhoffs's Principle</b>: ระบบต้องปลอดภัยแม้ศัตรูรู้อัลกอริทึม ความลับอยู่ที่ key — ตรงข้ามกับ <b>Security through Obscurity</b>",
+"ประวัติ: Caesar/Scytale → Vigenère → Enigma → DES/RSA/DH → AES, SHA-3, Post-Quantum"]},
+{h:"Symmetric (กุญแจเดียว)",p:[
+"ใช้ key เดียวทั้งเข้าและถอดรหัส <b>เร็ว</b> แต่มีปัญหา <b>Key Distribution</b> และจำนวน key โตเร็ว n(n−1)/2",
+"<b>DES</b>: block 64 บิต, key 56 บิต, Feistel 16 รอบ → ไม่ปลอดภัย (brute force ได้)",
+"<b>3DES</b>: ทำ DES 3 รอบ (E-D-E) ช้า และ NIST ประกาศเลิกใช้",
+"<b>AES</b>: block 128 บิต, key 128/192/256 → รอบ 10/12/14, โครงสร้าง SPN: SubBytes, ShiftRows, MixColumns, AddRoundKey"]},
+{h:"Stream / Block / Modes",p:[
+"<b>Stream cipher</b> ทีละบิต/ไบต์: RC4 (เลิกใช้), <b>ChaCha20</b>",
+"<b>Block cipher</b> ทีละบล็อก ต้องมี padding",
+"<b>ECB</b>: แต่ละบล็อกแยกกัน → บล็อกเหมือนกันได้ ciphertext เหมือนกัน <b>เห็น pattern ห้ามใช้</b>",
+"<b>CBC</b>: ใช้ IV และเชื่อมบล็อก → เข้ารหัสขนานไม่ได้",
+"<b>CTR</b>: ทำให้ block cipher ทำงานแบบ stream ทำขนานได้",
+"<b>GCM</b>: <b>AEAD</b> = เข้ารหัส + ตรวจความถูกต้องในตัว ใช้ใน TLS, WireGuard — <b>แนะนำ</b>"]},
+{h:"Asymmetric (กุญแจคู่)",p:[
+"<b>Public key</b> เปิดเผยได้, <b>Private key</b> เก็บไว้คนเดียว",
+"แก้ปัญหา key distribution แต่ <b>ช้ากว่า symmetric หลายร้อย–พันเท่า</b>",
+"อิง One-way/Trapdoor function: แยกตัวประกอบ (RSA), Discrete Log (DH), Elliptic Curve (ECC)"]},
+{h:"Hash Function",p:[
+"แปลงข้อมูลขนาดใดก็ได้ → ค่า digest ขนาดคงที่ <b>ทางเดียว ย้อนกลับไม่ได้</b>",
+"คุณสมบัติ: <b>Preimage resistance</b> (หา input จาก hash ไม่ได้), <b>Second preimage</b>, <b>Collision resistance</b> (หา 2 input ที่ hash เท่ากันไม่ได้), <b>Avalanche</b> (เปลี่ยน 1 บิต hash เปลี่ยนมาก)",
+"<b>MD5, SHA-1</b> เจอ collision แล้ว → ไม่ปลอดภัย",
+"<b>SHA-256, SHA-3</b> ยังปลอดภัย (SHA-3 ใช้โครงสร้าง <b>Sponge</b> แทน Merkle-Damgård)"]},
+{h:"MAC / HMAC",p:[
+"Hash อย่างเดียว ตรวจ integrity ได้ แต่ <b>ยืนยันผู้ส่งไม่ได้</b>",
+"<b>MAC</b> = ใช้ key ลับร่วมกันสร้าง tag → ได้ทั้ง Integrity + Authentication (แต่ไม่ได้ non-repudiation เพราะทั้งคู่มี key เดียวกัน)",
+"<b>HMAC</b> = hash 2 ชั้นกับ ipad/opad กัน <b>Length Extension Attack</b>",
+"ตรวจ tag ต้องใช้ <b>Constant-time comparison</b> กัน Timing Attack"]},
+{h:"Hybrid Cryptosystem",p:[
+"ใช้ <b>Asymmetric แลก session key</b> + <b>Symmetric เข้ารหัสข้อมูลจริง</b> = ได้ทั้งปลอดภัยและเร็ว",
+"ใช้ใน TLS, VPN, PGP"]}],
+f:["จำนวน key แบบ symmetric = n(n−1)/2 (100 คน = 4,950 key)","RSA ตัวอย่าง: p=61, q=53 → n=3233, e=17, d=2753; เข้ารหัส 65 → 2790"],
+tip:["Kerckhoffs's Principle","ECB ทำไมห้ามใช้ / GCM คือ AEAD","ขนาด block/key ของ DES และ AES","คุณสมบัติของ hash แต่ละข้อ","MAC vs Hash vs Signature","Hybrid ทำงานยังไง"]},
+
+{n:6,t:"การเข้ารหัสแบบอสมมาตรและลายเซ็นดิจิทัล",en:"Asymmetric Encryption & Digital Signatures",
+core:"กุญแจคู่แก้ปัญหาการแจกกุญแจ ความปลอดภัยอิง <b>trapdoor function</b> — คำนวณไปง่าย ย้อนกลับยากถ้าไม่มีความลับ",
+s:[
+{h:"RSA",p:[
+"ปลอดภัยเพราะ <b>แยกตัวประกอบจำนวนใหญ่ยาก</b>",
+"สร้าง key: เลือกจำนวนเฉพาะ p, q → n = p×q → φ(n) = (p−1)(q−1) → เลือก e (นิยม <b>65537</b>) → d = inverse ของ e mod φ(n)",
+"Public = (e, n), Private = (d, n)",
+"เข้ารหัส c = mᵉ mod n | ถอด m = cᵈ mod n",
+"ขนาด key: 1024 บิต = พัง, <b>2048 = ขั้นต่ำ</b>",
+"การโจมตี: แยกตัวประกอบ, timing, Bleichenbacher padding oracle, RNG อ่อน → ใช้ <b>OAEP</b> (เข้ารหัส), <b>PSS</b> (ลายเซ็น)"]},
+{h:"ECC",p:[
+"อิงปัญหา <b>ECDLP</b> (Elliptic Curve Discrete Log)",
+"Private key = k, Public key = kG (บวกจุดซ้ำๆ)",
+"ข้อดีหลัก: <b>key สั้นกว่ามาก แต่ปลอดภัยเท่ากัน</b> (ECC 256 บิต ≈ RSA 3072 บิต) → ประหยัดแบนด์วิดท์ พลังงาน handshake เร็ว",
+"Curve: P-256, secp256k1 (Bitcoin), <b>Curve25519/X25519</b> (แลกกุญแจ), <b>Ed25519</b> (ลายเซ็น)"]},
+{h:"Diffie-Hellman / ECDH",p:[
+"สองฝ่ายตกลง secret ร่วมกันบนช่องทางไม่ปลอดภัย <b>โดยไม่ส่ง secret จริง</b>",
+"ใช้ใน TLS 1.3, Signal, WireGuard",
+"แบบ <b>Ephemeral</b> (DHE/ECDHE) สร้างคีย์ใหม่ทุก session → <b>Perfect Forward Secrecy</b> (key หลักรั่วทีหลัง ก็ถอด session เก่าไม่ได้)",
+"<b>DH เพียวๆ ไม่ยืนยันตัวตน → โดน MITM ได้</b> แก้ด้วยลายเซ็น, ใบรับรองจาก CA, pre-shared key, ตรวจ fingerprint"]},
+{h:"Digital Signature",p:[
+"ให้ <b>Authentication + Integrity + Non-repudiation</b>",
+"ทิศทางกลับกับการเข้ารหัส: <b>เซ็นด้วย Private key ผู้ส่ง</b>, ตรวจด้วย <b>Public key ผู้ส่ง</b>",
+"ขั้นตอน: hash ข้อความ → เซ็น hash → ผู้รับ hash เองแล้วเทียบ",
+"อัลกอริทึม: RSA-PSS, DSA, ECDSA, <b>EdDSA (Ed25519)</b>",
+"กฎหมาย: ไทย = พ.ร.บ.ธุรกรรมทางอิเล็กทรอนิกส์ พ.ศ. 2544 (ETDA) | EU = eIDAS (SES/AES/QES)"]},
+{h:"PGP / GPG",p:[
+"PGP (1991), มาตรฐานเปิด OpenPGP (RFC 4880) ใช้ <b>Hybrid encryption</b>",
+"ความเชื่อถือแบบ <b>Web of Trust</b> (ผู้ใช้รับรองกันเอง) ต่างจาก PKI ที่เป็นลำดับชั้นมี CA",
+"ใช้เซ็น Git commit ได้"]},
+{h:"Disk Encryption: dm-crypt / LUKS",p:[
+"<b>FDE</b> เข้ารหัสทั้งดิสก์ กันเครื่องหาย/ถอดดิสก์ไปอ่าน ใช้ symmetric (AES-XTS)",
+"<b>dm-crypt</b> = ระบบเข้ารหัสระดับ kernel (Device Mapper) ไม่มีระบบจัดการ key slot",
+"<b>LUKS</b> เพิ่ม header + key slot (LUKS2 สูงสุด <b>32 slot</b>) แต่ละ slot ห่อ master key ด้วยรหัสผ่านผ่าน <b>Argon2id</b> (LUKS1 = PBKDF2)",
+"เปลี่ยนรหัสผ่าน <b>ไม่ต้องเข้ารหัสดิสก์ใหม่</b> | header หาย = ข้อมูลหาย ต้อง backup header"]},
+{h:"Key Management",p:[
+"วงจร 7 ขั้น (NIST SP 800-57): สร้าง → แจกจ่าย → เก็บ → ใช้ → หมุนเวียน → เพิกถอน → ทำลาย",
+"ที่เก็บ: ไฟล์, Vault, <b>HSM</b>, <b>TPM</b>, Token (YubiKey)",
+"<b>Envelope encryption</b>: แยก KEK (key ที่เข้ารหัส key) กับ DEK (key ที่เข้ารหัสข้อมูล)",
+"<b>Shamir's Secret Sharing</b> แบ่ง key ให้หลายคนถือ, ตั้งวันหมดอายุ, มี audit log"]}],
+f:["φ(n) = (p−1)(q−1)","c = mᵉ mod n, m = cᵈ mod n","ตัวอย่าง p=61, q=53 → n=3233, φ=3120, e=17, d=2753"],
+tip:["สูตร RSA และขั้นตอนสร้าง key","ข้อดี ECC (key สั้น)","PFS มาจาก Ephemeral DH","DH ไม่ยืนยันตัวตน → MITM","เซ็นด้วย private ตรวจด้วย public","LUKS key slot / เปลี่ยนรหัสไม่ต้อง re-encrypt"]},
+
+{n:7,t:"PKI และการจัดการใบรับรอง",en:"Public Key Infrastructure",
+core:"PKI ตอบคำถาม <b>“จะเชื่อได้ยังไงว่า public key นี้เป็นของเจ้าของตัวจริง?”</b> โดยให้ CA เป็นคนกลางรับรอง",
+s:[
+{h:"ภาพรวม PKI",p:[
+"องค์ประกอบ: <b>CA</b> (ออกใบรับรอง), <b>RA</b> (ตรวจตัวตนแทน CA), Repository, CRL/OCSP, End Entity",
+"แก้ปัญหา Public Key Distribution และ MITM",
+"4 ผู้เล่น: Subscriber (เจ้าของใบ), Relying Party (ผู้เชื่อถือ), CA, RA",
+"3 ระยะ: Enrollment → Operational → Termination"]},
+{h:"CA และ Chain of Trust",p:[
+"หน้าที่ CA: ตรวจตัวตน, เซ็นใบรับรอง, เผยแพร่, เพิกถอน",
+"ลำดับ: <b>Root CA</b> (self-signed, เก็บ <b>offline</b>) → <b>Intermediate CA</b> → <b>Leaf</b> (ใบของเว็บ)",
+"ทำไมมี Intermediate: ลดความเสี่ยง ถ้า Intermediate รั่วเพิกถอนได้ โดย Root ยังปลอดภัย และ Root เก็บ offline ได้",
+"Root ที่ระบบเชื่อถืออยู่ใน <b>Trust Store</b> (Trust Anchor)"]},
+{h:"X.509",p:[
+"v1 (1988), v2, <b>v3 (1996) เพิ่ม Extensions</b>",
+"ไฟล์: <b>DER</b> = binary, <b>PEM</b> = Base64 (-----BEGIN CERTIFICATE-----)",
+"ฟิลด์: Version, Serial, Signature Algorithm, Issuer, Validity, Subject, Public Key, Extensions",
+"Extensions: <b>SAN</b> (ชื่อโดเมนที่ใช้ได้), <b>Basic Constraints</b> (เป็น CA ได้ไหม), Key Usage, Extended Key Usage, SKI/AKI, CRL/AIA",
+"Serial number ต้องสุ่มอย่างน้อย <b>64 บิต</b> (กันชนกัน/ปลอมแบบ MD5 collision)"]},
+{h:"วงจรใบรับรอง & การเพิกถอน",p:[
+"สร้าง key → <b>CSR</b> → ยืนยันตัวตน → ออกใบ → ใช้ → ต่ออายุ / เพิกถอน / หมดอายุ",
+"CSR เซ็นด้วย private key = <b>Proof of Possession</b> (พิสูจน์ว่าถือ key จริง)",
+"<b>CRL</b> = รายการ serial ที่ถูกเพิกถอน ออกเป็นรอบ ใหญ่ขึ้นเรื่อยๆ และล่าช้า",
+"<b>OCSP</b> = ถามสถานะทีละใบแบบเกือบ real-time (แต่ CA รู้ว่าเราเข้าเว็บไหน)",
+"<b>OCSP Stapling</b> = เซิร์ฟเวอร์ไปถามเองแล้วแนบมากับ TLS handshake → เร็วขึ้น เป็นส่วนตัวขึ้น",
+"เหตุผลเพิกถอน: keyCompromise, caCompromise, superseded, cessationOfOperation, certificateHold",
+"แนวโน้ม: <b>Short-lived certificate</b> อายุสั้นมาก ลดการพึ่งการเพิกถอน"]},
+{h:"Private CA / Let's Encrypt",p:[
+"Root CA เก็บแบบ <b>air-gapped</b> หรือใน HSM",
+"<b>PKCS#12 (.p12/.pfx)</b> รวม key + ใบรับรองในไฟล์เดียว",
+"<b>Let's Encrypt</b> ใช้โปรโตคอล <b>ACME</b> ออกใบอัตโนมัติ (HTTP-01 challenge, certbot) ข้อจำกัด: <b>DV เท่านั้น อายุ 90 วัน</b>",
+"<b>mkcert</b> สร้าง CA ใช้ในเครื่อง dev"]},
+{h:"จัดการ key & Pinning",p:[
+"<b>HSM</b>: key <b>ส่งออกจากอุปกรณ์ไม่ได้ (non-exportable)</b>",
+"อายุแนะนำ: Root 10–20 ปี, Intermediate 3–5 ปี, TLS 90–398 วัน",
+"<b>Certificate Pinning</b> กัน MITM แต่เสี่ยงพังเมื่อเปลี่ยนใบ → แนะนำ pin ที่ Intermediate",
+"ระบบอัตโนมัติ: cert-manager (Kubernetes), HashiCorp Vault PKI"]},
+{h:"Certificate Transparency (CT)",p:[
+"เกิดจากเหตุ <b>DigiNotar 2011</b> ออกใบปลอมให้ Google",
+"ทุกใบรับรองถูกบันทึกลง log แบบ <b>append-only</b> ใช้ <b>Merkle Tree</b> ตรวจสอบได้",
+"<b>SCT</b> = หลักฐานว่าลง log แล้ว (Chrome บังคับตั้งแต่ 2018)",
+"เฝ้าระวังโดเมนตัวเองที่ <b>crt.sh</b>"]}],
+f:["Merkle proof depth d = ⌈log₂(n)⌉","Birthday: P ≈ 1 − e^(−n(n−1)/2N)"],
+tip:["ทำไม Root เก็บ offline / มี Intermediate","SAN และ Basic Constraints","CSR = proof of possession","CRL vs OCSP vs OCSP Stapling","Let's Encrypt: ACME, DV, 90 วัน","CT เกิดจาก DigiNotar, SCT"]},
+
+{n:8,t:"การพิสูจน์ตัวตนและการควบคุมการเข้าถึง",en:"Authentication & Authorization",
+core:"<b>รู้ว่าใครเข้ามา (AuthN) และให้สิทธิ์เท่าที่จำเป็น (AuthZ)</b> — ล็อกอินแน่นแต่สิทธิ์หลวมก็ยังเสี่ยง",
+s:[
+{h:"AAA & ปัจจัยยืนยันตัวตน",p:[
+"<b>Authentication</b> = คุณคือใคร | <b>Authorization</b> = ทำอะไรได้บ้าง | <b>Accounting</b> = ทำอะไรไปแล้ว (log)",
+"<b>Something you know</b>: รหัสผ่าน, PIN",
+"<b>Something you have</b>: OTP token, Security Key",
+"<b>Something you are</b>: ลายนิ้วมือ, ใบหน้า (รั่วแล้วเปลี่ยนไม่ได้)",
+"ปัจจัยเสริม: <b>Somewhere you are</b> (ตำแหน่ง/IP), <b>Something you do</b> (พฤติกรรม เช่น จังหวะพิมพ์)",
+"แนวโน้ม: <b>Passwordless</b> (FIDO2, Passkeys)"]},
+{h:"MFA / OTP",p:[
+"MFA = ปัจจัย <b>อย่างน้อย 2 ประเภทที่ต่างกัน</b> — รหัสผ่าน + คำถามลับ <b>ไม่ใช่ MFA</b> (เป็น know ทั้งคู่)",
+"<b>HOTP</b> (RFC 4226) อิงตัวนับ | <b>TOTP</b> (RFC 6238) อิงเวลา เปลี่ยนทุก <b>30 วินาที</b> (Google Authenticator)",
+"T นำไปผ่าน HMAC-SHA1 กับ secret key ได้รหัส 6 หลัก",
+"<b>FIDO2/WebAuthn</b> ใช้ public key, private key อยู่ในอุปกรณ์, <b>ผูกกับโดเมน → กัน phishing ได้</b>"]},
+{h:"โจมตี MFA",p:[
+"<b>MFA Fatigue / Push Bombing</b>: ส่ง push รัวๆ จนเหยื่อกดยอม → แก้ด้วย <b>Number Matching</b>",
+"<b>SIM Swapping</b>: ย้ายเบอร์ไป SIM คนร้าย → เลี่ยง SMS OTP",
+"<b>AiTM</b>: reverse proxy ดักรหัส + OTP → แก้ด้วย FIDO2",
+"<b>SS7 exploit</b>: ดัก SMS ระดับเครือข่ายมือถือ"]},
+{h:"เก็บรหัสผ่านให้ปลอดภัย",p:[
+"ห้ามเก็บ plaintext และห้ามใช้ MD5/SHA-256 ตรงๆ (<b>เร็วเกินไป</b> brute force ง่าย)",
+"ใช้ <b>bcrypt</b> (ปรับ cost), <b>scrypt</b> (ใช้ RAM มาก), <b>Argon2</b> (แชมป์ PHC 2015 แนะนำอันดับ 1)",
+"bcrypt cost +1 = ช้าลง 2 เท่า แนะนำ c = 10–12 | รูปแบบ <code>$2b$12$...</code>",
+"<b>Salt</b> = สุ่มต่อผู้ใช้ เก็บคู่กับ hash กัน Rainbow Table | <b>Pepper</b> = ค่าลับกลาง เก็บแยกจาก DB",
+"Linux <code>/etc/shadow</code> ขึ้นต้น <code>$6$</code> = SHA-512"]},
+{h:"NIST SP 800-63B",p:[
+"<b>ควรทำ</b>: ยาวอย่างน้อย 8 (แนะนำ 12+), รองรับ 64 ตัวขึ้นไป, เช็กกับรายการรหัสที่เคยรั่ว, MFA สำหรับสิทธิ์สูง",
+"<b>ไม่ควรทำ</b>: บังคับเปลี่ยนตามรอบโดยไม่มีเหตุ, กฎความซับซ้อนเข้มเกิน, ใช้คำถามลับเป็นปัจจัยหลัก",
+"การโจมตี: Brute force, Dictionary, Rainbow Table, <b>Credential Stuffing</b> (เอารหัสที่รั่วจากเว็บอื่นมาลอง)"]},
+{h:"JWT / OAuth 2.0 / OIDC",p:[
+"<b>JWT</b> = Header.Payload.Signature (Base64URL) — <b>Payload ไม่ได้เข้ารหัส ใครก็อ่านได้</b> ห้ามใส่ความลับ",
+"<b>OAuth 2.0</b> = โปรโตคอล <b>Authorization</b> (ไม่ใช่ authentication) มี Resource Owner, Client, Authorization Server, Resource Server",
+"Grant: <b>Authorization Code + PKCE</b> (ปลอดภัยสุด), Client Credentials (เครื่องคุยเครื่อง), Refresh Token",
+"<b>OIDC</b> = OAuth 2.0 + <b>ID Token</b> → ได้ Authentication ด้วย",
+"ความเสี่ยง JWT: <code>alg: none</code>, Algorithm confusion (RS256→HS256), replay, เก็บใน localStorage โดน XSS → ใช้ HttpOnly + Secure cookie"]},
+{h:"SSO / LDAP / Kerberos",p:[
+"<b>SSO</b> ล็อกอินครั้งเดียวใช้ได้หลายระบบ",
+"โปรโตคอล SSO: <b>SAML 2.0</b> (XML องค์กร), <b>OAuth/OIDC</b> (JSON เว็บ/มือถือ), <b>Kerberos</b> (ticket ใน Windows domain)",
+"<b>LDAP</b> ใช้ DN เช่น <code>uid=aj_somchai,ou=Instructors,dc=rmutsv,dc=ac,dc=th</code>",
+"<b>AD</b> = LDAP (ค้นข้อมูล) + Kerberos (ยืนยันตัวตน)",
+"Kerberos: ขอ <b>TGT</b> จาก AS → ใช้ TGT ขอ <b>Service Ticket</b> จาก TGS → ยื่นให้บริการ"]},
+{h:"Access Control Models",p:[
+"<b>DAC</b>: เจ้าของไฟล์กำหนดเอง (chmod) ยืดหยุ่น",
+"<b>MAC</b>: ระบบกลางบังคับ (SELinux, AppArmor) เข้มงวด",
+"<b>RBAC</b>: ให้สิทธิ์ผ่าน “บทบาท” (นักศึกษา/อาจารย์/แอดมิน)",
+"<b>ABAC</b>: ตัดสินจากหลาย attribute (แผนก, เวลา, ตำแหน่ง) ยืดหยุ่นสุด ซับซ้อนสุด (Cloud IAM)"]},
+{h:"Privilege Management",p:[
+"<b>Least Privilege</b> + <b>Separation of Duties</b> (งานเสี่ยงต้องแบ่งหลายคน)",
+"<b>Vertical escalation</b> = ยกตัวเป็นแอดมิน | <b>Horizontal</b> = เข้าข้อมูลคนระดับเดียวกัน (เช่น แก้ id ใน URL = IDOR)",
+"<b>Access Review</b>: ทำรายงาน → เจ้าของยืนยัน/เพิกถอน → ปรับ → บันทึก audit",
+"<b>JIT Access</b> สิทธิ์สูงชั่วคราวหมดแล้วถอนเอง | <b>PAM</b>: session recording, password vaulting"]},
+{h:"Biometrics",p:[
+"<b>FAR</b> = ยอมรับคนปลอมผิด (ยิ่งต่ำยิ่งปลอดภัย) | <b>FRR</b> = ปฏิเสธคนจริงผิด (ยิ่งต่ำยิ่งสะดวก)",
+"<b>EER</b> = จุดที่ FAR = FRR ใช้เทียบระบบ ยิ่งต่ำยิ่งดี (ตัวอย่าง threshold 0.65 → EER ≈ 2.2%)",
+"ปรับ threshold สูงขึ้น → FAR ลด แต่ FRR เพิ่ม",
+"ความเสี่ยง: <b>เพิกถอนไม่ได้</b>, ความเป็นส่วนตัว (PDPA), spoofing (รูป, หน้ากาก) → ใช้ <b>Liveness Detection</b>"]}],
+f:["TOTP: T = ⌊(t − T₀) / X⌋ (X = 30 วินาที)","bcrypt: T(c) = T₀ × 2ᶜ","Entropy H = L × log₂(N) เช่น Rmutsv25! ≈ 58.9 bits"],
+tip:["AAA แต่ละตัว","อะไรคือ/ไม่ใช่ MFA","HOTP vs TOTP","ทำไมไม่ใช้ SHA-256 เก็บรหัส / Salt vs Pepper","OAuth = AuthZ, OIDC เพิ่ม ID Token","DAC/MAC/RBAC/ABAC","FAR/FRR/EER"]},
+
+{n:9,t:"ไฟร์วอลล์และการกรองแพ็กเก็ต",en:"Firewall & Packet Filtering",
+core:"ไฟร์วอลล์คือด่านแรกที่คุมว่า <b>ทราฟฟิกไหนผ่านได้</b> หลักคือ <b>Default Deny</b> แล้วเปิดเฉพาะที่จำเป็น",
+s:[
+{h:"แนวคิดไฟร์วอลล์",p:[
+"ตรวจ กรอง คุมทราฟฟิกเข้า-ออกตาม rule set เป็นเส้นแบ่งความไว้ใจ (trust boundary)",
+"<b>Default Deny</b> (ปิดหมดแล้วเปิดทีละอย่าง) ปลอดภัยกว่า Default Allow",
+"วิวัฒนาการ: Packet Filter → Stateful → Proxy → <b>NGFW</b> → Cloud/Zero Trust"]},
+{h:"Stateless vs Stateful",p:[
+"<b>Stateless</b>: ดูทีละแพ็กเก็ตจาก header ไม่จำอะไร ต้องเขียนกฎทั้งขาไปขากลับ",
+"<b>Stateful</b>: จำ session ด้วย <b>conntrack</b> ขากลับผ่านอัตโนมัติ",
+"สถานะ conntrack: <b>NEW, ESTABLISHED, RELATED</b> (เช่น FTP data), <b>INVALID</b>",
+"<b>Network-based</b> (ที่ขอบเครือข่าย) + <b>Host-based</b> (บนเครื่อง เช่น ufw) ใช้คู่กัน = Defense in Depth"]},
+{h:"iptables",p:[
+"เป็นเครื่องมือ CLI ของ <b>Netfilter</b> ใน kernel โครงสร้าง <b>Tables → Chains → Rules</b>",
+"<b>filter</b> (กรอง: INPUT, OUTPUT, FORWARD), <b>nat</b> (PREROUTING, POSTROUTING, OUTPUT), <b>mangle</b> (แก้ header), <b>raw</b> (ก่อน conntrack)",
+"INPUT = เข้าเครื่องนี้ | OUTPUT = ออกจากเครื่องนี้ | FORWARD = ผ่านเครื่องนี้ไปที่อื่น",
+"Target: ACCEPT, <b>DROP (ทิ้งเงียบ)</b>, <b>REJECT (ตอบกลับว่าปฏิเสธ)</b>, LOG (บันทึกแล้วไปต่อ), SNAT/<b>MASQUERADE</b> (แปลง IP ขาออก), <b>DNAT</b> (port forward เข้า)",
+"Rate limit: <code>--limit 3/min --limit-burst 5</code> (token bucket), <b>hashlimit</b> แยกตาม source IP"]},
+{h:"nftables",p:[
+"มาแทน iptables/ip6tables/arptables/ebtables ด้วย syntax เดียว (family <code>inet</code> รวม v4+v6)",
+"มี <b>Set/Map</b> ในตัว ค้นหา <b>O(1)</b> (iptables ไล่ทีละกฎ O(n)) และ <b>Atomic update</b>",
+"<code>iptables-translate</code> ช่วยแปลงกฎเดิม"]},
+{h:"UFW",p:[
+"Front-end ใช้ง่ายของ iptables/nftables บน Ubuntu เหมาะกับ host-based",
+"<code>ufw default deny incoming</code> / <code>ufw default allow outgoing</code>",
+"<code>ufw allow 443/tcp</code>, <code>ufw allow from 10.10.99.0/28 to any port 22 proto tcp</code>",
+"<code>ufw limit 22/tcp</code> = จำกัดอัตรา กัน brute force",
+"Application profile อยู่ที่ <code>/etc/ufw/applications.d/</code>"]},
+{h:"Network Segmentation",p:[
+"แบ่งเครือข่ายเพื่อจำกัด <b>blast radius</b> (ความเสียหายไม่ลาม)",
+"<b>DMZ</b>: Internet→DMZ เปิดเฉพาะพอร์ตบริการ | <b>DMZ→Internal ห้าม</b> (กัน pivot) | Internal→DMZ ได้เพื่อดูแล",
+"<b>VLAN (802.1Q)</b> ID 12 บิต ได้ 4,094 VLAN, ใช้ trunk ส่งหลาย VLAN",
+"Zone ไว้ใจสูงสุด = Management"]},
+{h:"WAF & NGFW",p:[
+"ไฟร์วอลล์ดั้งเดิมทำงาน L3–L4 <b>มองไม่เห็น payload</b> → จับ SQLi/XSS ใน 443 ไม่ได้",
+"<b>WAF</b> ทำงาน L7 (HTTP) เช่น <b>ModSecurity + OWASP CRS</b> โดนบล็อกจะได้ 403",
+"<b>NGFW</b> (L3–L7): DPI, รู้จักแอป, IPS ในตัว, รู้ตัวผู้ใช้ (AD) แลกกับ throughput ต่ำลง ใช้ CPU มาก"]},
+{h:"ออกแบบและทดสอบกฎ",p:[
+"<b>First-match wins</b>: วาง ESTABLISHED,RELATED ไว้บนสุด, กฎเจาะจงก่อนกฎกว้าง, catch-all ล่างสุด",
+"หลีกเลี่ยง 0.0.0.0/0, ทบทวนลบกฎที่ไม่ใช้",
+"ทดสอบทั้ง <b>Positive</b> (ที่ควรผ่าน) และ <b>Negative</b> (ที่ควรถูกบล็อก) ด้วย nmap, hping3",
+"Change management: บันทึกเหตุผล, เก็บใน Git, ตรวจทุก 3–6 เดือน, backup ด้วย iptables-save / nft list ruleset"]}],
+f:["Conntrack memory = N × S_entry (≈350 bytes/entry)","จำนวน host = 2^(32−p) − 2 → /24=254, /27=30, /28=14","Token bucket: 3/min → เติม 1 token ทุก 20 วินาที"],
+tip:["Stateless vs Stateful, สถานะ conntrack","DROP vs REJECT","INPUT/OUTPUT/FORWARD และ table nat","nftables ดีกว่าอย่างไร (Set O(1), atomic)","DMZ → Internal ห้าม","คำนวณ host ใน subnet","WAF vs NGFW","ลำดับกฎ first-match"]},
+
+{n:10,t:"Proxy, Tunneling และ Remote Access",en:"Proxy, Tunneling & Remote Access",
+core:"เทคนิคพวกนี้ใช้ได้ทั้ง <b>ป้องกัน</b> และ <b>หลบเลี่ยง</b> การควบคุม — อย่าเปิด remote access สู่อินเทอร์เน็ตตรงๆ ถ้าไม่จำเป็น",
+s:[
+{h:"Forward vs Reverse Proxy",p:[
+"<b>Forward Proxy</b> อยู่ฝั่ง <b>client</b> ปกป้อง/คุม client ปลายทางเห็นแค่ IP proxy ใช้กรองเว็บ, cache, log (Squid พอร์ต 3128)",
+"<b>Reverse Proxy</b> อยู่ฝั่ง <b>server</b> ปกป้อง server ใช้ load balance, <b>TLS termination</b>, WAF, ซ่อน topology (Nginx, HAProxy, Traefik, Envoy)"]},
+{h:"Transparent Proxy & SSL Bumping",p:[
+"<b>Transparent</b>: client ไม่ต้องตั้งค่า ดักที่เครือข่าย (iptables REDIRECT, WCCP) | <b>Explicit</b>: ต้องตั้ง IP:Port ใน client",
+"<b>SSL Bumping</b> = MITM แบบได้รับอนุญาต: ต้องลง <b>Enterprise Root CA</b> ในเครื่อง client ก่อน แล้ว proxy สร้างใบปลอมเซ็นด้วย CA นั้น ถอด-ตรวจ-เข้ารหัสใหม่",
+"ข้อควรระวัง: แจ้งพนักงาน, มี AUP, ยกเว้นเว็บธนาคาร/สุขภาพ, แอปที่ทำ <b>Certificate Pinning</b> จะต่อไม่ได้"]},
+{h:"SOCKS & HTTP CONNECT",p:[
+"<b>SOCKS</b> ทำงานระดับ <b>Session Layer</b> ไม่สนว่าเป็นโปรโตคอลอะไร",
+"<b>SOCKS5</b> รองรับ UDP, Authentication, IPv6, ให้ proxy resolve DNS (SOCKS4 ไม่มี)",
+"<b>HTTP CONNECT</b> ขอให้ proxy เปิด TCP tunnel ตรง ได้ <code>200 Connection Established</code> แล้ว proxy ส่งต่อไบต์ดิบ <b>อ่านเนื้อหาไม่ได้</b>"]},
+{h:"SSH Tunneling (สำคัญมาก)",p:[
+"<b>-L Local forwarding</b>: เปิดพอร์ตในเครื่องเรา เพื่อเข้าบริการฝั่งไกล เช่น <code>ssh -L 8080:db.internal:5432</code>",
+"<b>-R Remote forwarding</b>: เปิดพอร์ตฝั่งไกล ให้เข้ามาหาบริการในเครื่องเรา เช่น <code>-R 9000:localhost:3000</code> (ต้อง <code>GatewayPorts yes</code>)",
+"<b>-D Dynamic forwarding</b>: สร้าง <b>SOCKS proxy</b> ไม่ต้องระบุปลายทาง เช่น <code>ssh -D 1080</code>",
+"Overhead การเข้ารหัสน้อยมาก (~1.9%)"]},
+{h:"Jump Host / Bastion",p:[
+"เปิดพอร์ต SSH สู่ภายนอก <b>จุดเดียว</b> แล้วกระโดดเข้าเครื่องภายใน = Least Exposure ลด attack surface",
+"<code>ssh -J bastion target</code> หรือ <code>ProxyJump</code> ใน <code>~/.ssh/config</code>",
+"Latency สะสม L = L1 + L2 + L_processing → วาง bastion ใกล้เป้าหมาย"]},
+{h:"VNC & Cockpit",p:[
+"<b>VNC</b> ใช้โปรโตคอล <b>RFB</b> ส่งภาพหน้าจอ จุดอ่อน: auth แบบ DES, <b>รหัสผ่านสูงสุด 8 ตัว</b>, ไม่มี MFA → <b>ห้ามเปิดตรงสู่เน็ต</b> ให้ผูก localhost แล้วผ่าน SSH tunnel (display :1 = พอร์ต <b>5901</b>)",
+"<b>Cockpit</b> (Red Hat) จัดการเซิร์ฟเวอร์ผ่านเว็บ พอร์ต <b>9090</b> สิทธิ์ตรงกับ user Linux — ใช้ cert จริง, จำกัด IP ด้วย ufw, ปิด root, เปิด 2FA, วางหลัง reverse proxy"]},
+{h:"Checklist Remote Access",p:[
+"SSH ใช้ key อย่างเดียว | fail2ban/เปลี่ยนพอร์ต/Port knocking | ห้ามเปิด VNC ตรง | ใช้ Bastion เดียว | MFA ทุกบริการภายนอก | หมุน/เพิกถอน key เมื่อคนลาออก | ตรวจ log ตั้ง alert",
+"ความเสี่ยงเมื่อเปิดสู่เน็ต: VNC <b>สูงมาก</b> > SOCKS สูง > Cockpit กลาง–สูง > SSH กลาง > Reverse Proxy HTTPS ต่ำ–กลาง"]}],
+f:["SOCKS5 overhead% = 25 / payload × 100 (500 B → 5%)","SSH throughput = T_raw × S/(S+O) (940 → ~922 Mbps)","VNC bandwidth B = (W×H×D×F)/R → 1920×1080×3×5/10 ≈ 24.9 Mbps"],
+tip:["Forward vs Reverse proxy ฝั่งไหน","SSL Bumping ต้องลง Root CA","SOCKS อยู่ชั้น Session, SOCKS5 รองรับ UDP","-L / -R / -D ต่างกันยังไง","Bastion = จุดเดียว","VNC 5901 / Cockpit 9090 / Squid 3128"]},
+
+{n:11,t:"เทคโนโลยีและการติดตั้ง VPN",en:"VPN Technologies",
+core:"VPN = สร้าง <b>อุโมงค์เข้ารหัส</b> บนเครือข่ายสาธารณะ ห่อแพ็กเก็ตเดิมไว้ในแพ็กเก็ตใหม่ (Encapsulation)",
+note:"เนื้อหาหัวข้อ 11.6–11.7 ในลิงก์โหลดมาไม่ครบ ส่วนนั้นชีฟเสริมจากความรู้มาตรฐาน ควรเปิดสไลด์อาจารย์เทียบอีกที",
+s:[
+{h:"แนวคิด VPN",p:[
+"ใช้เพื่อ: เข้าเครือข่ายองค์กรจากข้างนอก, เชื่อมสาขา, กันดักฟังบน Wi-Fi สาธารณะ, ซ่อน IP",
+"<b>Inner packet</b> (ของจริง) ถูกห่อใน <b>Outer packet</b> แล้ว decapsulate ที่ปลายทาง",
+"Overhead OpenVPN (AES-256-GCM) = 20 + 8 + 8 + 16 = <b>52 ไบต์</b>",
+"แพ็กเก็ตเล็ก ประสิทธิภาพต่ำ (84 B → 61.8%), แพ็กเก็ตใหญ่ดีขึ้น (1400 B → 96.4%)",
+"Metadata ยังรั่ว: IP ปลายทาง, พอร์ต, ขนาด, จังหวะเวลา"]},
+{h:"ประเภท VPN",p:[
+"<b>Site-to-Site</b>: gateway ↔ gateway เชื่อมสาขา ผู้ใช้ไม่ต้องลงโปรแกรม (ระวัง subnet ซ้อนกัน)",
+"<b>Remote Access</b>: ลง client บนเครื่องผู้ใช้ ได้ virtual IP ควรมี MFA + ตรวจสภาพเครื่อง",
+"<b>SSL VPN</b>: Clientless (ผ่านเว็บพอร์ทัล) หรือ Full tunnel ใช้ <b>443</b> ผ่าน firewall ง่ายกว่า IPsec"]},
+{h:"WireGuard",p:[
+"Layer 3, <b>UDP 51820</b>, อยู่ใน kernel Linux 5.6+, โค้ด ~4,000 บรรทัด (ตรวจสอบง่าย)",
+"Crypto ตายตัว: <b>Curve25519, ChaCha20-Poly1305, BLAKE2s</b>, Noise_IK",
+"<b>Cryptokey Routing</b>: ผูก Public key กับ <b>AllowedIPs</b> (ขาออกเลือก peer ตาม prefix ยาวสุด, ขาเข้าทิ้งถ้า IP ไม่ตรง)",
+"Handshake 1-RTT, rekey ทุก 120 วินาที, <b>PersistentKeepalive = 25</b> (ช่วยผ่าน NAT)",
+"<b>Split tunnel</b> = AllowedIPs เฉพาะวง LAN | <b>Full tunnel</b> = <code>0.0.0.0/0, ::/0</code>",
+"Stealth: ไม่ตอบอะไรถ้าไม่มี key ถูก | MTU IPv4 = <b>1440</b>, IPv6 = <b>1420</b>"]},
+{h:"OpenVPN",p:[
+"ใช้ TLS + PKI (CA, cert server EKU=serverAuth, cert client EKU=clientAuth) พอร์ต <b>UDP 1194</b>",
+"<code>tls-crypt</code> ห่อ control channel, <code>tls-version-min 1.2</code>, data cipher AES-256-GCM / ChaCha20-Poly1305",
+"<code>remote-cert-tls server</code> ฝั่ง client = <b>กัน MITM</b> (ต้องเป็น cert server เท่านั้น)",
+"แนวปฏิบัติ: cert แยกรายคน, <code>crl-verify</code>, เก็บ ca.key offline, ใช้ UDP ก่อน TCP"]},
+{h:"sshuttle",p:[
+"VPN แบบจนๆ ผ่าน <b>SSH</b>: ไม่ต้องลง VPN server แค่มี SSH + Python ปลายทาง",
+"ดักเฉพาะ <b>TCP</b> (DNS ด้วย --dns) <b>ไม่รองรับ ICMP/ping</b>, client ต้องเป็น root, ช้าเพราะ TCP-over-TCP"]},
+{h:"IPsec (เสริม)",p:[
+"<b>AH</b> (IP protocol 51) = ยืนยันตัวตน/integrity <b>ไม่เข้ารหัส</b>",
+"<b>ESP</b> (IP protocol <b>50</b>) = เข้ารหัส + integrity (ใช้จริงเป็นหลัก)",
+"<b>IKE/IKEv2</b> = แลกกุญแจ สร้าง <b>SA</b> ใช้ <b>UDP 500</b> และ <b>UDP 4500</b> (NAT-Traversal)",
+"<b>Transport mode</b> = ป้องกันแค่ payload (host-to-host) | <b>Tunnel mode</b> = ห่อทั้งแพ็กเก็ต + IP header ใหม่ 20 ไบต์ (site-to-site)",
+"ซอฟต์แวร์ Linux: strongSwan"]},
+{h:"Split/Full Tunnel, Kill Switch, ZTNA (เสริม)",p:[
+"<b>Split tunnel</b>: เฉพาะทราฟฟิกองค์กรเข้า VPN ที่เหลือออกเน็ตตรง → เร็ว แต่องค์กรมองไม่เห็นทั้งหมด",
+"<b>Full tunnel</b>: ทุกอย่างผ่าน VPN → คุมได้ทั้งหมด แต่ช้ากว่า",
+"<b>Kill Switch</b>: ถ้า VPN หลุด ตัดเน็ตทันที กันข้อมูลรั่วออกนอกอุโมงค์ (มักทำด้วย firewall rule)",
+"<b>DNS leak</b>: DNS query หลุดออกนอก VPN ทำให้รู้ว่าเข้าเว็บไหน",
+"<b>ZTNA / Zero Trust</b>: “ไม่เชื่อใครโดยปริยาย ตรวจทุกครั้ง” ให้สิทธิ์ราย <b>แอป</b> ไม่ใช่ทั้งเครือข่ายแบบ VPN (BeyondCorp 2014, NIST SP 800-207)"]}],
+f:["Overhead O = H_IP + H_UDP + H_VPN + Tag","ประสิทธิภาพ η = P / (P + O) × 100%","MTU WireGuard = 1500 − 20 − 8 − 16 − 16 = 1440"],
+tip:["พอร์ต: WireGuard 51820, OpenVPN 1194, IPsec UDP 500/4500 + ESP 50","AH ไม่เข้ารหัส / ESP เข้ารหัส","Transport vs Tunnel mode","AllowedIPs = Cryptokey Routing, split vs full","remote-cert-tls server กัน MITM","sshuttle ไม่รองรับ ping","ZTNA ต่างจาก VPN ยังไง"]},
+
+{n:12,t:"ความมั่นคงปลอดภัยเครือข่ายไร้สาย",en:"Wireless Security",
+core:"สัญญาณ Wi-Fi ลอยในอากาศ ไม่มีกำแพงกั้น → <b>attack surface ใหญ่กว่าเครือข่ายสาย</b>",
+s:[
+{h:"IEEE 802.11",p:[
+"ทำงานที่ <b>Physical + MAC (Data Link)</b>",
+"ย่าน 2.4 / 5 / 6 GHz (6 GHz เริ่มที่ Wi-Fi 6E)",
+"ช่อง 2.4 GHz ที่ไม่ทับกัน: <b>1, 6, 11</b>",
+"Wi-Fi 4 = 802.11n, Wi-Fi 5 = ac, Wi-Fi 6/6E = ax, Wi-Fi 7 = be",
+"Frame: <b>Management</b> (Beacon, Probe, Auth, Association, <b>Deauth</b>), Control (RTS/CTS, ACK), Data"]},
+{h:"วิวัฒนาการ WEP → WPA3",p:[
+"<b>WEP (1997)</b>: RC4 + CRC-32, IV ชนกัน → แตกเร็ว",
+"<b>WPA (2003)</b>: TKIP (ยังเป็น RC4) + Michael MIC — แผ่นปะชั่วคราว",
+"<b>WPA2 (2004)</b>: <b>AES-CCMP</b>, 4-Way Handshake — โดน <b>KRACK (2017)</b>",
+"<b>WPA3 (2018)</b>: <b>SAE (Dragonfly)</b>, GCMP, บังคับ PMF — มีจุดอ่อนบางส่วน <b>Dragonblood</b>",
+"WPA2-PSK ไม่กัน offline dictionary | WPA3 กันได้ + Forward Secrecy"]},
+{h:"4-Way Handshake & Keys",p:[
+"ลำดับ: (1) AP ส่ง <b>ANonce</b> → (2) Client ส่ง <b>SNonce</b> + MIC → (3) AP ส่ง <b>GTK</b> (เข้ารหัส) + MIC → (4) Client ACK",
+"<b>PMK</b> = PBKDF2(HMAC-SHA1, รหัสผ่าน, <b>SSID เป็น salt</b>, <b>4096 รอบ</b>, 256 บิต)",
+"<b>PTK</b> = มาจาก PMK + MAC ทั้งสอง + nonce ทั้งสอง → แตกเป็น <b>KCK</b> (ตรวจ MIC), <b>KEK</b> (เข้ารหัส GTK), <b>TK</b> (เข้ารหัสข้อมูล)",
+"<b>GTK</b> = key สำหรับ broadcast/multicast",
+"<b>GCMP</b> = AES-GCM ทำขนานได้ เร็วกว่าที่ความเร็ว Gbps (WPA3-Enterprise 192 บิตใช้ GCMP-256)"]},
+{h:"SAE (WPA3)",p:[
+"อิง <b>Zero-knowledge proof</b> บน elliptic curve: สร้าง Password Element → แลก Commit → แลก Confirm",
+"ข้อเด่น: <b>Forward Secrecy</b> → ดักเก็บทราฟฟิกไว้ ต่อให้รู้รหัสทีหลังก็ถอดไม่ได้",
+"กัน offline dictionary attack",
+"config: <code>key_mgmt=SAE</code>, <code>ieee80211w=2</code> (บังคับ PMF)"]},
+{h:"Enterprise: 802.1X / RADIUS / EAP",p:[
+"<b>Supplicant</b> (client) → <b>Authenticator</b> (AP/switch) → <b>Authentication Server</b> (RADIUS) → LDAP/AD ส่งผ่าน <b>EAPOL</b>",
+"<b>EAP-TLS</b>: ใช้ cert ทั้งสองฝั่ง <b>ปลอดภัยสูงสุด</b>",
+"<b>PEAP</b> (MS-CHAPv2) / <b>EAP-TTLS</b>: user/password ในอุโมงค์ TLS ไม่ต้องมี cert client",
+"<b>EAP-FAST</b>: ใช้ PAC",
+"RADIUS: <b>1812 = authentication</b>, <b>1813 = accounting</b>",
+"ข้อดี: เพิกถอนรายคนได้ ไม่ต้องแชร์รหัสเดียวกันทั้งองค์กร"]},
+{h:"การโจมตีไร้สาย",p:[
+"<b>Evil Twin</b>: AP ปลอมชื่อ SSID เดียวกัน สัญญาณแรงกว่า แล้วทำ MITM",
+"<b>Deauthentication</b>: management frame (ก่อน 802.11w) ไม่มีการยืนยัน → ปลอม deauth เตะคนออก ใช้คู่ Evil Twin หรือบังคับให้ handshake ใหม่เพื่อดักจับ",
+"<b>PMKID Attack (2018)</b>: ดึง PMKID จาก AP ได้ <b>โดยไม่ต้องมี client เชื่อมอยู่</b> แล้วไป crack offline",
+"เครื่องมือ: airmon-ng, airodump-ng, aireplay-ng, hcxdumptool, hashcat -m 22000 (ใช้ได้เฉพาะเครือข่ายที่ได้รับอนุญาต)",
+"บทเรียน: <b>ความยาวรหัส</b> สำคัญที่สุด"]},
+{h:"WIDS",p:[
+"จับ Evil Twin: <b>BSSID whitelist</b> (SSID ตรง แต่ BSSID ไม่ตรง = ปลอม)",
+"จับ deauth flood (จำนวน frame/วินาทีเกิน threshold), RSSI ผิดปกติ, cipher suite ไม่ตรง AP จริง",
+"เครื่องมือ: <b>Kismet</b>, Wireshark (filter <code>wlan.fc.type_subtype == 0x0c</code> = deauth)"]},
+{h:"Bluetooth & IoT",p:[
+"Classic (เสียง/ไฟล์ใหญ่ กินไฟ) vs <b>BLE</b> (IoT กินไฟน้อย)",
+"ช่องโหว่: BlueBorne, BIAS, KNOB",
+"Pairing: <b>Just Works = เสี่ยง MITM สูงสุด</b>, Numeric Comparison (เทียบเลข 6 หลัก), Passkey, OOB (NFC)",
+"Zigbee: key default สาธารณะ | Z-Wave ก่อน S2: โดน downgrade | LoRaWAN: AES-128 แต่จัดการ key อ่อน"]},
+{h:"Best Practices WLAN องค์กร",p:[
+"WPA3/WPA2-Enterprise + EAP-TLS แทน PSK", "เปิด <b>802.11w (PMF)</b> กัน deauth", "แยก VLAN/SSID พนักงาน-แขก-IoT",
+"<b>ปิด WPS</b> (PIN brute force ได้)", "เฝ้าระวัง Rogue AP", "รหัสผ่าน 12–16 ตัวขึ้นไป", "อัปเดต firmware", "ลดกำลังส่งเท่าที่ต้องใช้"]}],
+f:["ความถี่ 2.4 GHz: f = 2407 + 5n MHz (ช่อง 6 = 2437)","Keyspace N = Cᴸ, เวลา T = N / R (36¹⁰ ที่ 2M H/s ≈ 58 ปี)","PMKID = HMAC-SHA1(PMK, 'PMK Name' ‖ AA ‖ SA)"],
+tip:["ลำดับ WEP→WPA→WPA2→WPA3 และ cipher","4-Way Handshake: ANonce/SNonce/GTK","PMK ใช้ SSID เป็น salt 4096 รอบ","SAE ให้ Forward Secrecy","Supplicant/Authenticator/Auth Server","EAP-TLS ปลอดภัยสุด, RADIUS 1812/1813","PMKID ไม่ต้องมี client","PMF กัน deauth, ปิด WPS"]},
+
+{n:13,t:"ประเภทการบุกรุกและเทคนิคการโจมตี",en:"Intrusion Types & Attack Techniques",
+core:"<b>รู้เขารู้เรา</b> — ต้องเข้าใจว่าเขาโจมตียังไง ถึงจะออกแบบการป้องกันได้ถูก (ทดลองเฉพาะเครื่องตัวเองเท่านั้น)",
+note:"เนื้อหาหัวข้อ 13.4 (SQLi/XSS) ถึง 13.8 ในลิงก์โหลดมาไม่ครบ ส่วนนั้นชีฟเสริมจากความรู้มาตรฐาน ควรเปิดสไลด์อาจารย์เทียบอีกที",
+s:[
+{h:"Passive vs Active",p:[
+"<b>Passive</b> = แอบดู/ดักฟัง ไม่แก้ข้อมูล: อ่านเนื้อหา (release of contents), <b>Traffic analysis</b> (เดาจากขนาด เวลา ความถี่ แม้เข้ารหัส)",
+"→ ตรวจจับยากมาก ป้องกันด้วย <b>การเข้ารหัส</b> โจมตี <b>C</b>",
+"<b>Active</b> 4 แบบ: <b>Masquerade</b> (ปลอมตัว), <b>Replay</b> (ส่งซ้ำ), <b>Modification</b> (แก้ข้อความ), <b>DoS</b>",
+"→ ตรวจจับง่ายกว่า แต่ป้องกันยาก เน้น detect & respond โจมตี <b>I และ A</b>",
+"Threat actor: Script Kiddie, Insider, Hacktivist, Cybercriminal (เงิน), <b>APT</b> (รัฐ ทรัพยากรสูง แนบเนียน)",
+"Base64 = <b>encoding ไม่ใช่ encryption</b> (Basic Auth ถอดได้ทันที)"]},
+{h:"DoS / DDoS",p:[
+"DDoS = หลายต้นทาง มักเป็น <b>Botnet</b> บล็อก IP อย่างเดียวไม่พอ",
+"3 แบบ: <b>Volumetric</b> (กิน bandwidth: UDP flood, Amplification, หน่วย bps) | <b>Protocol</b> (กิน state table: SYN flood, หน่วย pps) | <b>Application</b> (กิน CPU/DB: HTTP flood, <b>Slowloris</b>, หน่วย rps)",
+"<b>SYN Flood</b> ทำ backlog เต็มด้วย half-open → แก้ด้วย <b>SYN Cookies</b> (ไม่เก็บ state จนกว่า ACK มา)",
+"<b>Amplification</b>: ปลอม IP เหยื่อส่งคำขอเล็ก ได้คำตอบใหญ่ (DNS/NTP) → แก้ด้วย <b>BCP 38 Ingress filtering</b>, ปิด open resolver",
+"ตรวจจากล็อก: ใช้ <b>baseline</b> θ = μ + 3σ (ห้ามคิดรวมช่วงโจมตี ไม่งั้น threshold สูงเกินจับไม่ได้)",
+"ป้องกัน: rate limit, CDN/Anycast, scrubbing, WAF, CAPTCHA"]},
+{h:"MITM",p:[
+"แทรกกลางระหว่างสองฝ่าย อ่าน/แก้ทราฟฟิก",
+"<b>ARP Spoofing</b> (L2) → Dynamic ARP Inspection, static ARP, arpwatch | สัญญาณ: MAC เดียวผูกหลาย IP (gateway มี MAC เหมือนเครื่องอื่น)",
+"<b>DNS Spoofing</b> → DNSSEC, DoT/DoH | <b>Evil Twin</b> → WPA3, 802.1X",
+"<b>SSL Stripping</b> (ลด HTTPS เป็น HTTP) → <b>HSTS</b> | <b>DHCP Spoofing</b> → DHCP Snooping"]},
+{h:"Replay Attack",p:[
+"ดักข้อความที่ถูกต้องแล้วส่งซ้ำ <b>ไม่ต้องรู้ key</b>",
+"MAC อย่างเดียว <b>กันไม่ได้</b> (MAC พิสูจน์ integrity ไม่ใช่ความสดใหม่)",
+"แก้ด้วย <b>Nonce + Timestamp + Sequence number</b>: รับเมื่อ เวลาอยู่ในหน้าต่าง W และ nonce ไม่เคยใช้ และ MAC ถูก"]},
+{h:"Reconnaissance",p:[
+"ลำดับ: <b>Footprinting → Scanning → Enumeration → Vulnerability Analysis</b> (= ขั้นแรกของ Kill Chain)",
+"<b>Passive recon</b> ไม่แตะเป้าหมาย: WHOIS, DNS สาธารณะ, Certificate Transparency, Google, social | <b>Active</b>: port scan, banner grab",
+"nmap: <b>-sT</b> connect (user ทั่วไปได้), <b>-sS</b> SYN half-open (ต้อง root), -sU UDP, <b>-sA</b> ACK (แผนที่ firewall), <b>-sV</b> หาเวอร์ชัน",
+"สถานะพอร์ต: SYN-ACK = <b>open</b> | RST = <b>closed</b> | ไม่ตอบ = <b>filtered</b>",
+"Enumeration: banner grabbing, directory brute, <b>robots.txt = แผนที่ให้คนร้าย</b>, AXFR, SMB null session, SNMP community default",
+"ซ่อน banner ช่วยได้ แต่ <b>ไม่ใช่สิ่งทดแทนการ patch</b> | firewall DROP ทำให้สแกนช้าลง ~20 เท่า"]},
+{h:"Exploitation: Buffer Overflow",p:[
+"Vulnerability = จุดอ่อน | Exploit = วิธีใช้จุดอ่อน | Payload = สิ่งที่รันหลังเจาะสำเร็จ | CVE = รหัสช่องโหว่ | CVSS = คะแนน 0–10",
+"<b>Buffer Overflow</b>: เขียนข้อมูลเกินขนาด buffer ทับ memory ข้างๆ จนถึง <b>Return Address</b> (C: strcpy, gets, sprintf)",
+"การป้องกัน (เสริม): <b>Stack Canary</b> (ค่าเฝ้ายาม ถูกทับ = หยุดโปรแกรม), <b>ASLR</b> (สุ่มตำแหน่งหน่วยความจำ), <b>NX/DEP</b> (ห้ามรันโค้ดใน stack), ใช้ฟังก์ชันที่จำกัดความยาว"]},
+{h:"SQL Injection & XSS (เสริม)",p:[
+"<b>SQLi</b>: แทรกคำสั่ง SQL ผ่าน input เช่น <code>' OR '1'='1</code> → แก้ด้วย <b>Prepared Statement / Parameterized Query</b>, least privilege ใน DB",
+"<b>XSS</b>: ฉีด JavaScript ให้รันในเบราว์เซอร์เหยื่อ (ขโมย cookie/session)",
+"<b>Stored</b> (เก็บในฐานข้อมูล โดนทุกคนที่เปิด), <b>Reflected</b> (สะท้อนจาก URL ทันที), <b>DOM-based</b> (เกิดฝั่ง JS ในเบราว์เซอร์)",
+"แก้ XSS: <b>Output encoding/escaping</b>, ตรวจ input, <b>CSP</b>, cookie แบบ <b>HttpOnly</b>"]},
+{h:"Malware (เสริม)",p:[
+"<b>Virus</b> ต้องเกาะไฟล์และต้องมีคนรัน | <b>Worm</b> แพร่ตัวเองผ่านเครือข่ายได้เอง | <b>Trojan</b> ปลอมเป็นโปรแกรมดี",
+"<b>Ransomware</b> เข้ารหัสไฟล์เรียกค่าไถ่ | <b>Rootkit</b> ซ่อนตัวลึกระดับ OS | <b>Spyware/Keylogger</b> | <b>Bot</b> ถูกคุมผ่าน C2 รวมเป็น Botnet",
+"ตรวจด้วย <b>Hash IoC</b>: ตรงกับ hash มัลแวร์ที่รู้จัก แต่แก้ 1 ไบต์ hash เปลี่ยน (หลบง่าย)",
+"<b>Entropy</b> สูงใกล้ 8 bits/byte = ข้อมูลถูกเข้ารหัส/บีบอัด/pack → สัญญาณ ransomware หรือมัลแวร์ที่ pack"]},
+{h:"Social Engineering & Phishing (เสริม)",p:[
+"หลอกคนแทนหลอกเครื่อง: Phishing, Spear phishing, <b>Whaling</b> (ผู้บริหาร), Vishing (โทร), Smishing (SMS), Pretexting, Baiting, Tailgating",
+"สัญญาณ phishing: เร่งรีบ/ขู่, โดเมนผู้ส่งแปลก, ลิงก์ไม่ตรงข้อความ, ขอรหัสผ่าน, ไฟล์แนบแปลก, SPF/DKIM/DMARC fail",
+"ประเมินความเสี่ยง R = L × I แล้วจัดระดับ"]},
+{h:"Kill Chain & MITRE ATT&CK",p:[
+"<b>Cyber Kill Chain (Lockheed Martin) 7 ขั้น</b>: Reconnaissance → Weaponization → Delivery → Exploitation → Installation → Command & Control (C2) → Actions on Objectives",
+"ตัดได้ขั้นไหนเร็ว ความเสียหายยิ่งน้อย",
+"<b>MITRE ATT&CK</b> = ฐานความรู้ <b>Tactics</b> (เป้าหมาย/ทำไม) และ <b>Techniques</b> (วิธีการ/อย่างไร) เช่น T1110 Brute Force, T1078 Valid Accounts, T1190 Exploit Public-Facing App",
+"การวิเคราะห์ intrusion: รวม log หลายแหล่ง (fw, web, auth) เรียงตามเวลา แล้วจับคู่กับ Kill Chain/ATT&CK"]}],
+f:["Risk R = L × I (Low 1–5, Medium 6–11, High 12–19, Critical 20–25)","SYN backlog เต็ม t = Q / λ","Amplification A = S_resp / S_req (3000/64 ≈ 46.9)","Threshold θ = μ + 3σ","Scan time T ≈ (N / P) × t_probe","Overflow O = max(0, L_in + 1 − S_buf)"],
+tip:["Passive vs Active + ตัวอย่าง","3 ประเภท DDoS และหน่วย","SYN Cookies / BCP 38","Replay กันด้วย nonce+timestamp","สถานะ open/closed/filtered, -sS ต้อง root","Stack canary/ASLR/NX","XSS 3 แบบ","Kill Chain 7 ขั้นเรียงลำดับ"]},
+
+{n:14,t:"การตรวจจับ ป้องกันการบุกรุก และตอบสนองเหตุการณ์",en:"IDS/IPS, SIEM & Incident Response",
+core:"<b>ตรวจจับ → วิเคราะห์ → ตอบสนอง</b> IDS แจ้งเตือน IPS บล็อก SIEM รวมเรื่องราว และ IR คือขั้นตอนรับมือที่ทำซ้ำได้",
+s:[
+{h:"IDS vs IPS",p:[
+"<b>IDS</b> = ดูและ<b>แจ้งเตือน</b> อยู่นอกเส้นทาง (SPAN/TAP) ไม่หน่วงทราฟฟิก",
+"<b>IPS</b> = อยู่ <b>inline</b> บล็อก/drop ได้ เพิ่ม latency, false positive = บล็อกของดี",
+"<b>NIDS/NIPS</b> (เครือข่าย: Snort, Suricata, Zeek) มองไม่เห็นข้างใน TLS | <b>HIDS</b> (บนเครื่อง: Wazuh, OSSEC, AIDE, Fail2ban) เห็นไฟล์/process หลังถอดรหัส",
+"วิธีตรวจ: <b>Signature</b> (จับของที่รู้จัก แม่น แต่จับ zero-day ไม่ได้), <b>Anomaly</b> (เทียบ baseline จับของใหม่ได้ แต่ FP เยอะ), Stateful protocol analysis, Hybrid"]},
+{h:"ตัวชี้วัด",p:[
+"TP = เตือนถูก, <b>FP = เตือนผิด (ของปกติโดนเตือน)</b>, <b>FN = หลุด (โจมตีจริงแต่ไม่เตือน)</b>, TN = ไม่เตือนถูก",
+"Precision = TP/(TP+FP), Recall = TP/(TP+FN), FPR = FP/(FP+TN)",
+"<b>Base Rate Fallacy</b>: โจมตีจริงหายาก (0.1%) แม้ระบบแม่น 99% alert ที่จริงมีแค่ ~9% → ต้อง correlate"]},
+{h:"Snort & Suricata",p:[
+"<b>Snort</b> (Martin Roesch, Cisco Talos) pipeline: DAQ → Decoder → <b>Preprocessors</b> (frag3, stream5, http_inspect — normalize กันหลบเลี่ยง) → Detection → Output",
+"Rule: <b>Header</b> (action protocol IP port ทิศทาง) + <b>Options</b> (msg, content, flow, classtype, <b>sid</b>, rev) — sid ของเราเริ่มที่ <b>1,000,000</b>",
+"<b>Suricata</b> (OISF) multi-thread มาตั้งแต่ต้น, rule คล้าย Snort, ตรวจโปรโตคอลจาก <b>เนื้อหาไม่ใช่เลขพอร์ต</b>",
+"Sticky buffer เช่น <code>http.uri</code>, <code>threshold:type both</code> = เตือนครั้งเดียวต่อรอบ",
+"ผลลัพธ์ <b>EVE JSON</b> (1 บรรทัด 1 event: alert, http, dns, tls, flow) วิเคราะห์ด้วย <code>jq</code>, อัปเดต rule ด้วย <code>suricata-update</code>"]},
+{h:"SIEM",p:[
+"เก็บ → <b>normalize</b> → <b>correlate</b> → เก็บระยะยาว → แจ้งเตือน (SIM + SEM)",
+"แหล่ง → collect → process (parse/normalize/enrich) → analyze → dashboard/report",
+"ตัวอย่าง: Wazuh, ELK, Graylog, Splunk, Microsoft Sentinel",
+"Syslog พอร์ต <b>514</b> (UDP/TCP), <code>logger</code> ทดสอบ"]},
+{h:"Wazuh",p:[
+"Agent → Manager (decoder + rule) → Indexer → Dashboard | Agent คุยกับ Manager ที่ <b>TCP 1514</b> | แยกมาจาก OSSEC",
+"<b>FIM</b> = เทียบไฟล์กับ baseline (hash, สิทธิ์, เจ้าของ) จับการแก้ไฟล์สำคัญ เช่น sshd_config (<code>&lt;syscheck&gt;</code>)",
+"Custom rule ใน <code>local_rules.xml</code> เช่น brute force (T1110) → login สำเร็จตามมา (T1078) = ระดับสูงขึ้น",
+"<b>Active Response</b> เช่น firewall-drop: ต้องตั้ง <b>timeout</b>, allowlist IP แอดมิน, ใช้กับ rule ที่มั่นใจสูงเท่านั้น",
+"อื่นๆ: SCA (CIS benchmark), rootcheck, หาช่องโหว่ CVE, map MITRE ATT&CK"]},
+{h:"Log Analysis & Correlation",p:[
+"แหล่ง: auth.log, web access log, journald, firewall log, IDS alert, auditd, last/lastb",
+"เครื่องมือ: grep, awk, sort, uniq, jq",
+"<b>Correlation</b>: pivot ด้วย IP, user, session, เวลา เช่น web attack → SSH brute force → login สำเร็จ → แก้ sshd_config (persistence)",
+"กฎ correlation: brute force → success, impossible travel, admin login นอกเวลา",
+"HTTP 200 แต่ขนาดใหญ่ผิดปกติ = อาจข้อมูลรั่ว"]},
+{h:"Threat Intel & IoC",p:[
+"<b>IoC</b> = หลักฐานหลังเกิดเหตุ (IP, hash, domain, URL) | <b>IoA</b> = พฤติกรรมที่บอกว่ากำลังโจมตี",
+"TI 4 ระดับ: Strategic (ผู้บริหาร), Operational, Tactical (TTPs), Technical (IoC)",
+"<b>Pyramid of Pain</b>: ล่างสุด = hash (คนร้ายเปลี่ยนง่าย) → IP → Domain → ... → บนสุด = <b>TTPs</b> (เปลี่ยนยากสุด เจ็บสุด)",
+"มาตรฐาน: <b>STIX</b> (รูปแบบข้อมูล), <b>TAXII</b> (ช่องทางส่ง), MISP | แหล่ง: AbuseIPDB, OTX, VirusTotal, ThaiCERT",
+"ระวัง: IoC หมดอายุ, IP ที่ใช้ร่วม (NAT/CDN) ทำให้บล็อกผิด"]},
+{h:"Incident Response (NIST SP 800-61)",p:[
+"4 ระยะ: <b>Preparation → Detection & Analysis → Containment, Eradication & Recovery → Post-Incident Activity</b>",
+"Preparation: CSIRT, IR plan, playbook, รายชื่อติดต่อ, backup + ทดสอบกู้, tabletop ปีละครั้ง",
+"Severity: Critical (ภายใน 15 นาที), High (1 ชม.), Medium (4 ชม.), Low (วันทำการถัดไป)",
+"<b>Containment</b> (จำกัดวง): บล็อก IP, ล็อกบัญชี <code>passwd -l</code>, ฆ่า session, ย้ายไป VLAN กักกัน — <b>เก็บหลักฐานก่อน</b>",
+"<b>Eradication</b> (กำจัด): ลบ backdoor, คืนไฟล์จาก baseline, แก้ต้นเหตุ, เปลี่ยนรหัส/key",
+"<b>Recovery</b>: กู้จาก backup ที่สะอาด เฝ้าระวังเข้มข้น",
+"<b>Lessons Learned</b> ภายใน 1–2 สัปดาห์ อัปเดต rule/playbook, แจ้งตาม PDPA/พ.ร.บ.ไซเบอร์"]}],
+f:["Precision = TP/(TP+FP), Recall = TP/(TP+FN), F1 = 2PR/(P+R)","Rate λ = N / T","MTTD = Σ(t_detect − t_start) / n (MTTC, MTTR คิดแบบเดียวกัน)"],
+tip:["IDS vs IPS (inline/บล็อก)","Signature vs Anomaly","FP vs FN, Precision/Recall","Base Rate Fallacy","Snort rule header/options, sid ≥ 1,000,000","Wazuh FIM / Active Response timeout","Pyramid of Pain บนสุด = TTPs","NIST 800-61 4 ระยะเรียงลำดับ"]}
+];
+
+// correct answer is always o[0]; options are shuffled at runtime
+const Q = [];
+const add = (c, arr) => arr.forEach(x => Q.push({c, q:x[0], o:x[1], e:x[2]}));
+
+add(1, [
+["แฮกเกอร์ดักจับรหัสผ่านที่ส่งผ่านเครือข่ายแบบ plaintext ได้ เหตุการณ์นี้ละเมิดองค์ประกอบใดของ CIA Triad โดยตรง",
+ ["Confidentiality","Integrity","Availability","Non-repudiation"],
+ "ข้อมูลลับถูกคนไม่มีสิทธิ์เห็น = ละเมิดความลับ (C) ไม่ได้แก้ข้อมูล (I) และระบบยังใช้งานได้ (A) ส่วน Non-repudiation ไม่ได้อยู่ใน CIA Triad"],
+["นักศึกษาเจาะเข้าฐานข้อมูลแล้วแก้เกรดตัวเองจาก C เป็น A ละเมิดองค์ประกอบใดมากที่สุด",
+ ["Integrity","Confidentiality","Availability","Accounting"],
+ "การแก้ไขข้อมูลโดยไม่ได้รับอนุญาตคือการละเมิดความถูกต้องครบถ้วน (Integrity) ป้องกันด้วย hash, digital signature, FIM"],
+["ข้อใดเป็นเครื่องมือหลักที่ใช้รักษา Availability",
+ ["Redundancy, Load Balancing และ Backup","การเข้ารหัส AES","Digital Signature","การทำ Hash ด้วย SHA-256"],
+ "Availability คือระบบพร้อมใช้เมื่อต้องการ จึงใช้ระบบสำรอง กระจายโหลด และ backup ส่วนการเข้ารหัสเพื่อ C และ hash/signature เพื่อ I"],
+["ระบบมี MTBF = 990 ชั่วโมง และ MTTR = 10 ชั่วโมง ค่า Availability เป็นเท่าใด",
+ ["99%","99.9%","90%","98%"],
+ "Availability = MTBF/(MTBF+MTTR) = 990/(990+10) = 990/1000 = 0.99 = 99%"],
+["ข้อใดอธิบาย 'Vulnerability' ได้ถูกต้องที่สุด",
+ ["จุดอ่อนของระบบที่อาจถูกใช้ประโยชน์ได้","สิ่งที่อาจก่อให้เกิดความเสียหาย เช่น แฮกเกอร์","การลงมือใช้ประโยชน์จากจุดอ่อน","ผลคูณของโอกาสและผลกระทบ"],
+ "Vulnerability = จุดอ่อน ส่วน Threat = สิ่งที่อาจทำให้เสียหาย, Attack = การลงมือโจมตี, Risk = โอกาส × ผลกระทบ"],
+["ช่องโหว่ที่มีคะแนน CVSS v3.1 เท่ากับ 9.5 อยู่ในระดับใด",
+ ["Critical","High","Medium","Severe"],
+ "CVSS: Low 0.1–3.9, Medium 4.0–6.9, High 7.0–8.9, Critical 9.0–10.0 ดังนั้น 9.5 = Critical (ไม่มีระดับชื่อ Severe)"],
+["แนวคิด 'Defense in Depth' หมายถึงข้อใด",
+ ["วางการป้องกันหลายชั้น หากชั้นหนึ่งถูกเจาะ ยังมีชั้นอื่นป้องกัน","ลงทุนกับไฟร์วอลล์ที่แข็งแรงที่สุดเพียงจุดเดียว","ให้ผู้ใช้มีสิทธิ์เท่าที่จำเป็น","ทดสอบเจาะระบบอย่างลึกซึ้ง"],
+ "Defense in Depth คือการป้องกันซ้อนหลายชั้น (Perimeter, Network, Host, Application, Data) ข้อ 'สิทธิ์เท่าที่จำเป็น' คือ Least Privilege"],
+["ลำดับชั้นของเอกสารความปลอดภัยจากระดับสูงสุดไปต่ำสุดข้อใดถูกต้อง",
+ ["Policy → Standard → Guideline → Procedure","Procedure → Guideline → Standard → Policy","Standard → Policy → Procedure → Guideline","Policy → Procedure → Standard → Guideline"],
+ "Policy กำหนดทิศทางใหญ่ → Standard ข้อบังคับเจาะจง → Guideline คำแนะนำ → Procedure ขั้นตอนปฏิบัติจริง"],
+["NIST Cybersecurity Framework 2.0 มีฟังก์ชันหลักกี่ฟังก์ชัน และฟังก์ชันใดถูกเพิ่มเข้ามาใหม่",
+ ["6 ฟังก์ชัน เพิ่ม Govern","5 ฟังก์ชัน เพิ่ม Recover","6 ฟังก์ชัน เพิ่ม Monitor","7 ฟังก์ชัน เพิ่ม Audit"],
+ "CSF 2.0 มี 6 ฟังก์ชัน: Govern, Identify, Protect, Detect, Respond, Recover โดย Govern เป็นฟังก์ชันใหม่ (เวอร์ชันเดิมมี 5)"],
+["ข้อใดเป็นลักษณะของ ISO/IEC 27001:2022",
+ ["เป็นมาตรฐาน ISMS ใช้วงจร PDCA มี 93 controls และขอใบรับรองได้","เป็นกรอบแบบสมัครใจของสหรัฐฯ ที่ไม่มีการรับรอง","เป็นกฎหมายคุ้มครองข้อมูลส่วนบุคคล","เป็นมาตรฐานสำหรับบัตรเครดิตโดยเฉพาะ"],
+ "ISO 27001 = ระบบบริหารความมั่นคงสารสนเทศ (ISMS) ใช้ PDCA มี 93 controls ใน Annex A และขอ certification ได้ ส่วนกรอบสมัครใจคือ NIST CSF และบัตรเครดิตคือ PCI-DSS"],
+["ทีมใดทำหน้าที่เชื่อมประสานให้ Red Team และ Blue Team เรียนรู้จากกันและกัน",
+ ["Purple Team","Green Team","White Team","GRC Team"],
+ "Purple Team รวมมุมโจมตี (Red) และป้องกัน (Blue) เข้าด้วยกัน ส่วน GRC ดูแลธรรมาภิบาล ความเสี่ยง และการปฏิบัติตามกฎ"],
+["หลักการ 'Least Privilege' หมายถึงข้อใด",
+ ["ให้สิทธิ์ผู้ใช้เท่าที่จำเป็นต่อการทำงานเท่านั้น","ให้ผู้ใช้น้อยที่สุดเข้าถึงระบบ","ใช้ทรัพยากรน้อยที่สุดในการป้องกัน","ให้ผู้ดูแลระบบมีสิทธิ์สูงสุดเพียงคนเดียว"],
+ "Least Privilege = ให้สิทธิ์ขั้นต่ำที่พอต่อหน้าที่ ลดความเสียหายหากบัญชีถูกยึด"],
+["ข้อใดเป็นหลักการสำคัญที่บทนี้สรุปไว้",
+ ["ความปลอดภัยเป็นกระบวนการต่อเนื่อง และไม่มีระบบใดปลอดภัย 100%","ซื้อไฟร์วอลล์ราคาแพงแล้วระบบจะปลอดภัยถาวร","ปัจจัยมนุษย์มีผลน้อยที่สุดต่อความปลอดภัย","เป้าหมายคือทำให้ความเสี่ยงเป็นศูนย์"],
+ "ไม่มีระบบปลอดภัย 100% เป้าหมายคือลดความเสี่ยงให้รับได้ ความปลอดภัยเป็นกระบวนการไม่ใช่ผลิตภัณฑ์ และมนุษย์มักเป็นจุดอ่อนที่สุด"]
+]);
+
+add(2, [
+["การโจมตีแบบ ARP Spoofing เกิดขึ้นที่ชั้นใดของ OSI Model",
+ ["Layer 2 Data Link","Layer 3 Network","Layer 4 Transport","Layer 7 Application"],
+ "ARP ทำงานแปลง IP เป็น MAC ใน LAN ซึ่งเป็น Layer 2 ส่วน IP Spoofing อยู่ L3, SYN Flood อยู่ L4, SQLi/XSS อยู่ L7"],
+["SYN Flood ใช้ประโยชน์จากกลไกใดของ TCP",
+ ["Three-way handshake โดยส่ง SYN จำนวนมากแต่ไม่ตอบ ACK","การแบ่ง fragment ของ IP","การส่ง ICMP echo ไปยัง broadcast","การขอ DNS ที่ได้คำตอบขนาดใหญ่"],
+ "SYN Flood ส่ง SYN รัวๆ ทำให้ server ค้างการเชื่อมต่อครึ่งเปิดจน backlog เต็ม ส่วน ICMP ไป broadcast คือ Smurf และ DNS คำตอบใหญ่คือ Amplification"],
+["การโจมตีแบบ Smurf มีลักษณะอย่างไร",
+ ["ส่ง ICMP echo ไปยัง broadcast address โดยปลอม source IP เป็นของเหยื่อ","ส่งแพ็กเก็ต ping ที่มีขนาดเกินมาตรฐาน","ซ่อนข้อมูลไว้ใน ICMP เพื่อส่งออกนอกเครือข่าย","ส่ง SYN จำนวนมากไปยังพอร์ต 80"],
+ "Smurf ทำให้ทุกเครื่องในวงตอบ echo reply ไปที่เหยื่อพร้อมกัน ส่วนแพ็กเก็ตใหญ่เกินคือ Ping of Death และซ่อนข้อมูลคือ ICMP Tunneling"],
+["ทำไม UDP จึงมักถูกใช้ในการโจมตีแบบ Amplification",
+ ["เป็นโปรโตคอลแบบ connectionless ทำให้ปลอม source IP ได้ง่าย","เพราะ UDP เข้ารหัสข้อมูลในตัว","เพราะ UDP มี three-way handshake ที่ช้า","เพราะ UDP ใช้ได้เฉพาะ IPv6"],
+ "UDP ไม่ต้องจับมือก่อนส่ง ผู้โจมตีจึงปลอม IP เหยื่อแล้วส่งคำขอเล็กๆ ให้เซิร์ฟเวอร์ตอบคำตอบใหญ่ไปถล่มเหยื่อ"],
+["NetFlow ใช้ข้อมูลชุดใดในการระบุ flow (5-tuple)",
+ ["Source IP, Destination IP, Source Port, Destination Port, Protocol","Source MAC, Destination MAC, VLAN, TTL, Protocol","Source IP, Destination IP, TTL, Checksum, Payload","Hostname, Username, Port, Protocol, Time"],
+ "5-tuple = Src IP, Dst IP, Src Port, Dst Port และ Protocol ใช้ระบุการไหลของทราฟฟิกแต่ละ flow"],
+["เครื่องในองค์กรติดต่อออกไปยัง IP ภายนอกเดิมทุก 60 วินาทีอย่างสม่ำเสมอ รูปแบบนี้เรียกว่าอะไร และบ่งชี้อะไร",
+ ["Beaconing อาจเป็นมัลแวร์ติดต่อเซิร์ฟเวอร์ C2","Port Scan กำลังสำรวจพอร์ต","DNS Tunneling กำลังส่ง DNS ปกติ","Lateral Movement ภายในเครือข่าย"],
+ "Beaconing คือการติดต่อออกเป็นจังหวะสม่ำเสมอ เป็นสัญญาณคลาสสิกของมัลแวร์ที่รายงานตัวกับ Command & Control"],
+["Deep Packet Inspection (DPI) แตกต่างจาก Stateful Inspection อย่างไร",
+ ["DPI ตรวจถึงเนื้อหา payload ไม่ใช่แค่ header และสถานะการเชื่อมต่อ","DPI ตรวจเฉพาะ IP header","DPI ทำงานเร็วกว่าเพราะดูข้อมูลน้อยกว่า","DPI อ่านทราฟฟิก TLS ได้เสมอโดยไม่ต้องตั้งค่าเพิ่ม"],
+ "DPI ดูลึกถึง payload ระบุแอปและเนื้อหาได้ แต่ทราฟฟิกที่เข้ารหัส TLS ต้องทำ SSL Inspection ก่อนจึงจะอ่านได้"],
+["การตรวจจับความผิดปกติของทราฟฟิกที่ดีต้องเริ่มจากสิ่งใด",
+ ["สร้าง Baseline ของพฤติกรรมปกติ","บล็อกทุกพอร์ตทันที","ติดตั้ง antivirus ทุกเครื่อง","ปิดการใช้งาน ICMP ทั้งหมด"],
+ "ต้องรู้ว่าปกติเป็นอย่างไร (PPS, bandwidth, สัดส่วนโปรโตคอล) ก่อน จึงจะบอกได้ว่าค่าใดผิดปกติ"],
+["ในระบบ VoIP การที่ผู้โจมตีแอบใช้ระบบโทรออกโดยให้องค์กรเป็นผู้จ่ายค่าโทร เรียกว่าอะไร",
+ ["Toll Fraud","SPIT","Eavesdropping","SIP Scanning"],
+ "Toll Fraud = แอบโทรออก (มักต่างประเทศ) บนบัญชีเหยื่อ ส่วน SPIT คือสแปมทางโทรศัพท์"],
+["โปรโตคอลใดเป็นเวอร์ชันที่เพิ่มการเข้ารหัสและการยืนยันตัวตนให้กับ RTP",
+ ["SRTP","RTCP","RTSP","SIP"],
+ "SRTP = Secure RTP ส่วน RTCP รายงานคุณภาพ, RTSP ควบคุมสตรีม และ SIP ใช้ตั้ง/วางสาย"],
+["DNS record ชนิดใดใช้ระบุเมลเซิร์ฟเวอร์ของโดเมน",
+ ["MX","PTR","CNAME","AAAA"],
+ "MX = Mail Exchanger, PTR = แปลง IP กลับเป็นชื่อ, CNAME = ชื่อแฝง, AAAA = IPv6"],
+["ลำดับขั้นตอนการขอ IP จาก DHCP (DORA) ข้อใดถูกต้อง",
+ ["Discover → Offer → Request → Acknowledge","Discover → Offer → Reply → Accept","Detect → Offer → Request → Assign","Discover → Order → Request → Answer"],
+ "DORA = Discover (หา server), Offer (เสนอ IP), Request (ขอใช้), Acknowledge (ยืนยัน)"],
+["DHCP Snooping ป้องกัน Rogue DHCP Server ได้อย่างไร",
+ ["อนุญาตให้ส่ง DHCP Offer ได้เฉพาะพอร์ตที่ตั้งเป็น trusted","เข้ารหัสแพ็กเก็ต DHCP ทั้งหมด","บล็อกการขอ IP จากเครื่อง client ทุกเครื่อง","เปลี่ยน DHCP ไปใช้พอร์ต TCP"],
+ "สวิตช์กำหนดพอร์ตที่ต่อ DHCP server จริงเป็น trusted ที่เหลือเป็น untrusted ซึ่งส่ง Offer/Ack ไม่ได้ Rogue DHCP จึงแจก IP ปลอมไม่ได้"],
+["DNSSEC record ชนิดใดเก็บลายเซ็นดิจิทัลของชุด record",
+ ["RRSIG","DNSKEY","DS","NSEC"],
+ "RRSIG = ลายเซ็นของ record set, DNSKEY = public key ของโซน, DS = hash ของ key โซนลูกเก็บที่โซนแม่, NSEC = พิสูจน์ว่าไม่มีชื่อนั้น"]
+]);
+
+add(3, [
+["FTP ใช้พอร์ตใดเป็น Control Connection",
+ ["21","20","22","990"],
+ "FTP ใช้พอร์ต 21 ส่งคำสั่ง และพอร์ต 20 (หรือพอร์ตสุ่ม) ส่งข้อมูล ส่วน 22 คือ SSH/SFTP และ 990 คือ Implicit FTPS"],
+["ใน FTP Passive mode เซิร์ฟเวอร์ตอบ PASV เป็น (…,195,149) ไคลเอนต์ต้องเชื่อมต่อไปยังพอร์ตใด",
+ ["50,069","344","19,595","49,920"],
+ "พอร์ต = p1 × 256 + p2 = 195 × 256 + 149 = 49,920 + 149 = 50,069"],
+["ทำไม FTP Active mode จึงมักมีปัญหากับไฟร์วอลล์และ NAT",
+ ["เพราะเซิร์ฟเวอร์ต้องเชื่อมต่อย้อนกลับมาที่พอร์ตของไคลเอนต์","เพราะใช้ UDP แทน TCP","เพราะเข้ารหัสข้อมูลทั้งหมด","เพราะใช้พอร์ตเดียวทั้งคำสั่งและข้อมูล"],
+ "Active mode ให้ server เปิดการเชื่อมต่อเข้ามาหา client ซึ่งไฟร์วอลล์/NAT ฝั่ง client มักบล็อก ส่วน Passive ให้ client เป็นฝ่ายต่อออก"],
+["ข้อใดอธิบาย SFTP ได้ถูกต้องที่สุด",
+ ["เป็นโปรโตคอลที่รันเป็น subsystem ของ SSH ใช้พอร์ต 22 พอร์ตเดียว","เป็น FTP ที่เพิ่มการเข้ารหัส SSL/TLS","ใช้พอร์ต 21 และ 20 เหมือน FTP","ไม่รองรับการยืนยันตัวตนด้วย key"],
+ "SFTP ไม่ใช่ FTP+เข้ารหัส แต่เป็นโปรโตคอลใหม่บน SSH พอร์ต 22 ส่วน FTP+SSL/TLS คือ FTPS"],
+["Explicit FTPS (FTPES) เริ่มการเข้ารหัสอย่างไร",
+ ["เชื่อมต่อพอร์ต 21 แบบ plaintext แล้วส่งคำสั่ง AUTH TLS เพื่ออัปเกรด","เข้ารหัสตั้งแต่เริ่มต้นที่พอร์ต 990","ใช้ SSH tunnel ที่พอร์ต 22","ใช้ STARTTLS ที่พอร์ต 587"],
+ "Explicit FTPS เริ่มที่ 21 แล้วอัปเกรดด้วย AUTH TLS (RFC 4217) ส่วน Implicit FTPS เข้ารหัสตั้งแต่ต้นที่พอร์ต 990"],
+["ในห้องแล็บใช้ tcpdump ดักทราฟฟิก FTP แล้วเห็นสิ่งใด ซึ่งเป็นจุดอ่อนสำคัญที่สุด",
+ ["username และ password ในรูป plaintext","เฉพาะ hash ของรหัสผ่าน","ข้อมูลที่ถูกเข้ารหัสด้วย AES","ไม่เห็นข้อมูลใดเลย"],
+ "FTP ไม่เข้ารหัสอะไรเลย คำสั่ง USER/PASS จึงอ่านได้ตรงๆ เป็นเหตุผลหลักที่ห้ามใช้ FTP ใน production"],
+["การตั้งค่า ChrootDirectory ใน SFTP มีจุดประสงค์เพื่ออะไร",
+ ["ขังผู้ใช้ให้อยู่เฉพาะในโฟลเดอร์ที่กำหนด ออกไปส่วนอื่นของระบบไม่ได้","เข้ารหัสไฟล์ทุกไฟล์ในโฟลเดอร์","เปลี่ยนพอร์ตของ SSH","บีบอัดไฟล์ก่อนส่ง"],
+ "chroot jail จำกัดผู้ใช้ให้เห็นเฉพาะโฟลเดอร์ของตัวเอง (และโฟลเดอร์ chroot ต้องเป็นของ root)"],
+["หากต้องการสำรองข้อมูลทุกวันโดยส่งเฉพาะส่วนที่เปลี่ยนแปลง ควรใช้เครื่องมือใด",
+ ["rsync over SSH","FTP","SCP","VNC"],
+ "rsync ทำ incremental sync ส่งเฉพาะส่วนที่ต่าง เหมาะกับ backup ส่วน SCP คัดลอกทั้งไฟล์ทุกครั้ง"],
+["SSHFS เหมาะกับงานแบบใด",
+ ["เมานต์โฟลเดอร์บนเซิร์ฟเวอร์ให้ใช้งานเหมือนไดรฟ์ในเครื่อง","ส่งเมลแบบเข้ารหัส","สร้าง VPN ระดับ Layer 3","สแกนพอร์ตของเซิร์ฟเวอร์"],
+ "SSHFS ใช้ FUSE เมานต์ไฟล์ระยะไกลผ่าน SSH เหมาะกับการแก้ไขไฟล์บนเซิร์ฟเวอร์เหมือนอยู่ในเครื่อง"],
+["SSH แบ่งโปรโตคอลออกเป็น 3 ชั้น ข้อใดถูกต้อง",
+ ["Transport, Authentication, Connection","Physical, Network, Application","Handshake, Record, Alert","Session, Presentation, Application"],
+ "SSH มี Transport (เข้ารหัส/แลก key), User Authentication และ Connection (แยกเป็นหลาย channel) ส่วน Handshake/Record/Alert เป็นของ TLS"],
+["ในการยืนยันตัวตน SSH แบบ key-based ข้อใดถูกต้อง",
+ ["Private key ไม่เคยถูกส่งออกจากเครื่อง client","Client ส่ง private key ไปให้ server ตรวจ","Server เก็บ private key ของผู้ใช้ไว้","ต้องส่งรหัสผ่านร่วมด้วยทุกครั้ง"],
+ "ใช้ challenge-response: server เก็บเฉพาะ public key ใน authorized_keys แล้วให้ client พิสูจน์ด้วย private key ที่อยู่ในเครื่องตัวเองเท่านั้น"],
+["ชนิดของ SSH key ที่แนะนำสำหรับการสร้างใหม่ในปัจจุบันคือข้อใด",
+ ["Ed25519","DSA","RSA 1024 บิต","MD5"],
+ "Ed25519 ปลอดภัย เร็ว key สั้น จึงแนะนำ ส่วน DSA และ RSA 1024 ล้าสมัย และ MD5 ไม่ใช่ชนิดของ key"],
+["fail2ban ใช้ป้องกันการโจมตีประเภทใด",
+ ["Brute force การเดารหัสผ่านซ้ำๆ โดยบล็อก IP ที่ล็อกอินผิดหลายครั้ง","SQL Injection บนเว็บ","การดักฟังข้อมูลบน Wi-Fi","Buffer Overflow"],
+ "fail2ban อ่าน log การล็อกอินล้มเหลว แล้วสั่งไฟร์วอลล์บล็อก IP นั้นชั่วคราว"],
+["รหัสผ่านยาว 13 ตัว สุ่มจากชุดอักขระ 95 ตัว มีค่า entropy ประมาณเท่าใด (log₂95 ≈ 6.57)",
+ ["≈ 85.4 bits","≈ 13 bits","≈ 1,235 bits","≈ 108 bits"],
+ "H = L × log₂(N) = 13 × 6.57 ≈ 85.4 bits"]
+]);
+
+add(4, [
+["พอร์ต 587 ของ SMTP ใช้สำหรับงานใด",
+ ["Submission จากไคลเอนต์ไปยังเซิร์ฟเวอร์พร้อม STARTTLS","ส่งเมลระหว่างเซิร์ฟเวอร์แบบ plaintext","รับเมลด้วย POP3","รับเมลด้วย IMAPS"],
+ "587 = mail submission (มักใช้ STARTTLS), 25 = server-to-server, 465 = implicit TLS, POP3=110/995, IMAP=143/993"],
+["ข้อแตกต่างหลักระหว่าง POP3 และ IMAP คือข้อใด",
+ ["IMAP เก็บเมลไว้บนเซิร์ฟเวอร์และซิงก์ได้หลายอุปกรณ์ ส่วน POP3 ดาวน์โหลดลงเครื่อง","POP3 ใช้ส่งเมล ส่วน IMAP ใช้รับเมล","POP3 เข้ารหัสเสมอ แต่ IMAP ไม่เข้ารหัส","IMAP ใช้พอร์ต 25"],
+ "POP3 มักดึงลงเครื่องแล้วลบออกจาก server ส่วน IMAP เก็บบน server ซิงก์สถานะข้ามอุปกรณ์ ทั้งสองใช้ 'รับ' เมล ส่วนส่งคือ SMTP"],
+["STARTTLS Stripping คืออะไร และป้องกันด้วยอะไร",
+ ["MITM ลบคำสั่ง STARTTLS ทำให้ส่งแบบ plaintext ป้องกันด้วย MTA-STS หรือ DANE","การถอดรหัส S/MIME ด้วย brute force ป้องกันด้วย RSA 4096","การปลอม header From ป้องกันด้วย SPF","การส่งสแปมจำนวนมาก ป้องกันด้วย CAPTCHA"],
+ "STARTTLS เป็นแบบ opportunistic ผู้โจมตีกลางทางจึงตัดคำสั่งอัปเกรดทิ้งได้ MTA-STS/DANE บังคับให้ต้องใช้ TLS"],
+["ความแตกต่างสำคัญระหว่าง STARTTLS และ S/MIME คือข้อใด",
+ ["STARTTLS ป้องกันระหว่างการส่ง (transport) ส่วน S/MIME ป้องกันเนื้อหาเมลแบบ end-to-end","STARTTLS เข้ารหัสเนื้อหา ส่วน S/MIME เข้ารหัสแค่การเชื่อมต่อ","ทั้งสองทำงานเหมือนกันทุกประการ","S/MIME ใช้เฉพาะ symmetric key"],
+ "STARTTLS ปกป้องช่องทางระหว่างเซิร์ฟเวอร์ พอถึงเซิร์ฟเวอร์เมลถูกเก็บแบบอ่านได้ ส่วน S/MIME เข้ารหัส/เซ็นตัวเนื้อหาเอง"],
+["ในการเข้ารหัส S/MIME แบบ hybrid ใช้ key ใดเข้ารหัส session key",
+ ["Public key ของผู้รับ","Private key ของผู้ส่ง","Public key ของผู้ส่ง","Private key ของผู้รับ"],
+ "เนื้อหาถูกเข้ารหัสด้วย session key (AES) แล้วนำ public key ผู้รับมาเข้ารหัส session key มีแต่ผู้รับที่มี private key ถอดได้"],
+["TLS 1.3 มีจุดเด่นด้าน handshake อย่างไร",
+ ["ใช้ 1-RTT และใช้ ephemeral ECDHE ทำให้มี Forward Secrecy","ใช้ 2-RTT และใช้ RSA key exchange","ไม่มี handshake เลย","ใช้ 3-RTT เพื่อความปลอดภัยสูงสุด"],
+ "TLS 1.3 ลดเหลือ 1-RTT (TLS 1.2 ใช้ 2-RTT) และบังคับ ephemeral DH ทำให้ได้ Forward Secrecy"],
+["Diffie-Hellman ใช้ g = 5, p = 23 ฝั่ง client เลือก a = 6 ค่า A ที่ส่งให้อีกฝั่งคือเท่าใด",
+ ["8","19","2","15"],
+ "A = gᵃ mod p = 5⁶ mod 23 = 15,625 mod 23 = 8 (ฝั่ง server b=15 ได้ B=19 และ secret ร่วม K=2)"],
+["OWASP Top 10 ปี 2021 อันดับที่ 1 (A01) คืออะไร",
+ ["Broken Access Control","Injection","Cryptographic Failures","Security Misconfiguration"],
+ "A01 = Broken Access Control (เช่น IDOR) ส่วน Injection เลื่อนลงไปเป็น A03 และ A02 คือ Cryptographic Failures"],
+["วิธีที่ถูกต้องที่สุดในการป้องกัน SQL Injection คือข้อใด",
+ ["ใช้ Parameterized Query / Prepared Statement","ซ่อนข้อความ error ของฐานข้อมูล","เปลี่ยนชื่อตารางให้เดายาก","ใช้ HTTPS"],
+ "Parameterized query แยกคำสั่ง SQL กับข้อมูลออกจากกัน input จึงไม่ถูกตีความเป็นคำสั่ง ส่วนวิธีอื่นแค่ลดข้อมูลหรือป้องกันคนละเรื่อง"],
+["Server-Side Request Forgery (SSRF) อยู่ในอันดับใดของ OWASP Top 10 2021",
+ ["A10","A01","A03","A06"],
+ "SSRF ถูกเพิ่มเป็น A10 ในปี 2021 ส่วน A06 คือ Vulnerable and Outdated Components เช่น Log4Shell"],
+["SPF record ที่ลงท้ายด้วย '-all' หมายถึงอะไร",
+ ["Hard fail: เมลจาก IP ที่ไม่อยู่ในรายการให้ถือว่าไม่ผ่าน","Soft fail: ยอมรับแต่ทำเครื่องหมาย","อนุญาตทุก IP","ปิดการตรวจ SPF"],
+ "-all = hard fail (ไม่ผ่าน) ส่วน ~all = soft fail"],
+["DMARC มีหน้าที่หลักอย่างไร",
+ ["กำหนดนโยบายว่าจะทำอย่างไรกับเมลที่ไม่ผ่าน SPF/DKIM และรับรายงาน","เซ็นเนื้อหาเมลด้วย private key","ระบุ IP ที่ได้รับอนุญาตให้ส่งเมล","เข้ารหัสเมลระหว่างทาง"],
+ "DMARC เป็นชั้นนโยบายเหนือ SPF+DKIM (none / quarantine / reject) และตรวจ alignment ส่วนเซ็นเมลคือ DKIM และระบุ IP คือ SPF"],
+["การปลอมแปลงอีเมลแบบใดตรวจจับยากที่สุด เพราะ SPF, DKIM และ DMARC ผ่านทั้งหมด",
+ ["ส่งจากบัญชีจริงที่ถูกยึด (compromised account)","Display name spoofing","Typosquatting domain","Homograph attack"],
+ "เมื่อบัญชีจริงถูกยึด เมลส่งจากเซิร์ฟเวอร์ที่ถูกต้องด้วย key ที่ถูกต้อง การตรวจเชิงเทคนิคจึงผ่านทั้งหมด"],
+["DNSSEC record ชนิดใดถูกเก็บไว้ที่โซนแม่ เพื่อเชื่อม chain of trust ไปยังโซนลูก",
+ ["DS","RRSIG","NSEC3","SOA"],
+ "DS (Delegation Signer) เก็บ hash ของ KSK ของโซนลูกไว้ที่โซนแม่ ทำให้ไล่ความเชื่อถือจาก root ลงมาได้"],
+["ผลของ dig +dnssec แสดง flag ใดที่บอกว่า resolver ตรวจ DNSSEC ผ่าน",
+ ["ad","aa","rd","tc"],
+ "ad = Authenticated Data หมายถึงตรวจลายเซ็นผ่าน ส่วน aa = authoritative answer, rd = recursion desired, tc = truncated"]
+]);
+
+add(5, [
+["Kerckhoffs's Principle กล่าวว่าอย่างไร",
+ ["ระบบเข้ารหัสต้องปลอดภัยแม้ผู้โจมตีรู้อัลกอริทึม ความลับต้องอยู่ที่ key","ต้องซ่อนอัลกอริทึมไว้เป็นความลับเสมอ","key ยิ่งสั้นยิ่งปลอดภัย","ควรใช้อัลกอริทึมที่คิดขึ้นเองดีกว่ามาตรฐาน"],
+ "ความปลอดภัยต้องขึ้นกับ key ไม่ใช่การปกปิดวิธี ซึ่งตรงข้ามกับ Security through Obscurity"],
+["หากองค์กรมีผู้ใช้ 100 คน และต้องการให้ทุกคู่สื่อสารกันได้ด้วย symmetric key แยกกัน ต้องใช้กี่ key",
+ ["4,950","100","200","10,000"],
+ "จำนวน key = n(n−1)/2 = 100 × 99 / 2 = 4,950 แสดงปัญหา scalability ของ symmetric"],
+["ข้อใดถูกต้องเกี่ยวกับ AES",
+ ["Block 128 บิต, key 128/192/256 บิต ใช้ 10/12/14 รอบ","Block 64 บิต, key 56 บิต ใช้ 16 รอบ","เป็น stream cipher","ใช้โครงสร้าง Feistel"],
+ "AES ใช้ SPN block 128 บิต จำนวนรอบตามขนาด key ส่วน block 64/key 56/16 รอบ/Feistel เป็นของ DES"],
+["ทำไม DES จึงไม่ปลอดภัยในปัจจุบัน",
+ ["key ยาวเพียง 56 บิต ถูก brute force ได้","เพราะเป็นอัลกอริทึมแบบ asymmetric","เพราะใช้ block 256 บิต","เพราะไม่มีการใช้ key"],
+ "key 56 บิตมีพื้นที่เล็กพอให้ฮาร์ดแวร์ปัจจุบันลองทุกค่าได้ จึงต้องใช้ AES แทน"],
+["โหมด ECB มีปัญหาสำคัญอะไร",
+ ["บล็อก plaintext ที่เหมือนกันได้ ciphertext เหมือนกัน ทำให้เห็นรูปแบบข้อมูล","เข้ารหัสแบบขนานไม่ได้","ต้องใช้ key สองชุด","ไม่สามารถถอดรหัสได้"],
+ "ECB เข้ารหัสแต่ละบล็อกแยกกัน จึงรั่ว pattern (ตัวอย่างภาพนกเพนกวินที่ยังมองเห็นรูปร่าง) จึงไม่ควรใช้"],
+["โหมดใดเป็น AEAD ที่ให้ทั้งการเข้ารหัสและการตรวจสอบความถูกต้อง และนิยมใช้ใน TLS",
+ ["GCM","ECB","CBC","CTR"],
+ "GCM = Galois/Counter Mode ให้ Authenticated Encryption ในตัว ส่วน CBC และ CTR เข้ารหัสอย่างเดียว ต้องมี MAC แยก"],
+["ข้อใดเป็นข้อเสียหลักของ Asymmetric Encryption เมื่อเทียบกับ Symmetric",
+ ["ช้ากว่ามากหลายร้อยถึงพันเท่า","มีปัญหา key distribution","ต้องใช้ key จำนวน n(n−1)/2","ไม่มีพื้นฐานทางคณิตศาสตร์"],
+ "Asymmetric แก้ปัญหาการแจก key ได้ แต่คำนวณช้ามาก จึงไม่ใช้เข้ารหัสข้อมูลขนาดใหญ่โดยตรง"],
+["คุณสมบัติของ Hash ที่ว่า 'ยากที่จะหาข้อมูล 2 ชุดที่ให้ค่า hash เท่ากัน' เรียกว่าอะไร",
+ ["Collision Resistance","Preimage Resistance","Avalanche Effect","Non-repudiation"],
+ "Collision resistance = หาคู่ใดๆ ที่ hash ชนกันไม่ได้ ส่วน Preimage = หา input จาก hash ไม่ได้ และ Avalanche = เปลี่ยนนิดเดียว hash เปลี่ยนมาก"],
+["เปลี่ยนตัวอักษรเพียง 1 ตัวในไฟล์ แล้วค่า SHA-256 เปลี่ยนไปเกือบทั้งหมด ปรากฏการณ์นี้คืออะไร",
+ ["Avalanche Effect","Collision","Key Distribution","Padding Oracle"],
+ "Avalanche Effect ทำให้การแก้ไขเล็กน้อยตรวจพบได้ทันทีจาก hash ที่เปลี่ยนไปมาก"],
+["Hash function ใดที่ยังถือว่าปลอดภัยในปัจจุบัน",
+ ["SHA-256","MD5","SHA-1","CRC-32"],
+ "MD5 และ SHA-1 พบ collision แล้ว CRC-32 ไม่ใช่ cryptographic hash ส่วน SHA-256 และ SHA-3 ยังปลอดภัย"],
+["ทำไมต้องใช้ MAC/HMAC แทนการใช้ Hash เพียงอย่างเดียว",
+ ["Hash ตรวจ integrity ได้แต่ยืนยันผู้ส่งไม่ได้ MAC ใช้ key ลับจึงได้ authentication ด้วย","Hash ช้ากว่า MAC มาก","MAC ให้ความลับ (Confidentiality) ด้วย","Hash ตรวจ integrity ไม่ได้"],
+ "ใครก็คำนวณ hash ใหม่ได้หลังแก้ข้อมูล แต่ MAC ต้องมี key ลับร่วม จึงยืนยันได้ว่ามาจากผู้ถือ key"],
+["HMAC ออกแบบให้ใช้ hash ซ้อน 2 รอบกับ ipad/opad เพื่อป้องกันการโจมตีแบบใด",
+ ["Length Extension Attack","SQL Injection","Replay Attack","Brute force"],
+ "Hash แบบ Merkle-Damgård (เช่น SHA-256) โดน length extension ได้ ถ้าทำ MAC แบบ hash(key||msg) ตรงๆ HMAC จึงซ้อน 2 ชั้นเพื่อกัน"],
+["Hybrid Cryptosystem ที่ใช้ใน TLS, VPN และ PGP ทำงานอย่างไร",
+ ["ใช้ asymmetric แลกเปลี่ยน session key แล้วใช้ symmetric เข้ารหัสข้อมูลจริง","ใช้ symmetric แลก key แล้วใช้ asymmetric เข้ารหัสข้อมูล","ใช้ hash แทนการเข้ารหัสทั้งหมด","เข้ารหัสข้อมูลด้วย asymmetric สองรอบ"],
+ "ได้ข้อดีทั้งสองแบบ: asymmetric แก้ปัญหาแจก key และ symmetric เข้ารหัสข้อมูลจำนวนมากได้เร็ว"],
+["ตัวอย่าง RSA เล็ก n = 3233, e = 17 เข้ารหัสข้อความ m = 65 ได้ c = 2790 หากต้องการถอดรหัสต้องใช้ค่าใด",
+ ["d = 2753 คำนวณ m = 2790^2753 mod 3233","e = 17 คำนวณ m = 2790^17 mod 3233","φ(n) = 3120 คำนวณ m = 2790 mod 3120","p = 61 คำนวณ m = 2790 / 61"],
+ "ถอดรหัสใช้ private exponent d: m = cᵈ mod n = 2790^2753 mod 3233 = 65"]
+]);
+
+add(6, [
+["ความปลอดภัยของ RSA อาศัยความยากของปัญหาใด",
+ ["การแยกตัวประกอบจำนวนเต็มขนาดใหญ่ (Integer Factorization)","Discrete Logarithm บน Elliptic Curve","การหา collision ของ hash","การเดารหัสผ่าน"],
+ "RSA ปลอดภัยเพราะรู้ n = p×q แต่แยกกลับเป็น p และ q ได้ยากมาก ส่วน ECDLP เป็นพื้นฐานของ ECC"],
+["ถ้า p = 61 และ q = 53 ค่า φ(n) คือเท่าใด",
+ ["3120","3233","114","3233 − 1"],
+ "φ(n) = (p−1)(q−1) = 60 × 52 = 3120 ส่วน n = p×q = 3233"],
+["Public key และ Private key ของ RSA ประกอบด้วยค่าใด",
+ ["Public = (e, n), Private = (d, n)","Public = (d, n), Private = (e, n)","Public = (p, q), Private = (e, d)","Public = φ(n), Private = n"],
+ "e เปิดเผยพร้อม n ส่วน d ต้องเก็บเป็นความลับ และ p, q, φ(n) ต้องเก็บลับหรือทำลายทิ้ง"],
+["ขนาด RSA key ขั้นต่ำที่ถือว่าใช้งานได้ในปัจจุบันคือเท่าใด",
+ ["2048 บิต","512 บิต","1024 บิต","256 บิต"],
+ "RSA 1024 บิตถือว่าไม่ปลอดภัยแล้ว 2048 เป็นขั้นต่ำในทางปฏิบัติ (256 บิตเป็นขนาดของ ECC)"],
+["ข้อได้เปรียบหลักของ ECC เมื่อเทียบกับ RSA คือข้อใด",
+ ["ได้ความปลอดภัยเท่ากันด้วย key ที่สั้นกว่ามาก","ไม่ต้องใช้ private key","ปลอดภัยจากคอมพิวเตอร์ควอนตัม","ไม่ต้องใช้คณิตศาสตร์"],
+ "ECC 256 บิต ≈ RSA 3072 บิต ประหยัดพื้นที่ แบนด์วิดท์ พลังงาน และ handshake เร็ว แต่ยังโดน Shor's algorithm บนควอนตัมเช่นเดียวกับ RSA"],
+["Perfect Forward Secrecy (PFS) ได้มาจากการใช้สิ่งใด",
+ ["Ephemeral Diffie-Hellman (DHE/ECDHE) ที่สร้าง key ใหม่ทุก session","RSA key ขนาดใหญ่ใช้ซ้ำทุก session","การเก็บ session key ไว้ใน HSM","การใช้ MD5"],
+ "เมื่อ key แลกเปลี่ยนเป็นแบบชั่วคราวและถูกทิ้งหลังจบ session ต่อให้ long-term key รั่วภายหลังก็ถอด session เก่าไม่ได้"],
+["ทำไม Diffie-Hellman แบบเพียวๆ จึงเสี่ยงต่อ Man-in-the-Middle",
+ ["เพราะไม่มีการยืนยันตัวตนของคู่สนทนา","เพราะส่ง secret ผ่านเครือข่ายตรงๆ","เพราะใช้ key ยาวเกินไป","เพราะเป็น symmetric encryption"],
+ "DH ตกลง secret ได้โดยไม่ส่ง secret จริง แต่ไม่รู้ว่าคุยกับใคร ผู้โจมตีจึงแทรกกลางแลก key กับทั้งสองฝั่งได้ ต้องเสริมด้วยลายเซ็นหรือใบรับรอง"],
+["ในการสร้าง Digital Signature ผู้ส่งใช้ key ใดเซ็น",
+ ["Private key ของผู้ส่ง","Public key ของผู้ส่ง","Public key ของผู้รับ","Private key ของผู้รับ"],
+ "ลายเซ็นทิศกลับกับการเข้ารหัส: เซ็นด้วย private key ผู้ส่ง ใครก็ตรวจได้ด้วย public key ผู้ส่ง"],
+["Digital Signature ให้คุณสมบัติด้านความปลอดภัยใดที่ MAC ให้ไม่ได้",
+ ["Non-repudiation (ผู้เซ็นปฏิเสธไม่ได้)","Integrity","Authentication","Confidentiality"],
+ "MAC ใช้ key ร่วมกัน ทั้งสองฝ่ายสร้าง tag ได้ จึงปฏิเสธได้ ส่วนลายเซ็นมีเพียงเจ้าของ private key ที่สร้างได้ (ทั้งคู่ไม่ได้ให้ Confidentiality)"],
+["กฎหมายไทยที่รองรับลายมือชื่ออิเล็กทรอนิกส์คือข้อใด",
+ ["พ.ร.บ.ว่าด้วยธุรกรรมทางอิเล็กทรอนิกส์ พ.ศ. 2544","พ.ร.บ.คุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562","พ.ร.บ.การรักษาความมั่นคงปลอดภัยไซเบอร์ พ.ศ. 2562","eIDAS"],
+ "พ.ร.บ.ธุรกรรมทางอิเล็กทรอนิกส์ พ.ศ. 2544 (กำกับโดย ETDA) ส่วน eIDAS เป็นของสหภาพยุโรป"],
+["PGP/GPG ใช้รูปแบบความเชื่อถือแบบใด ซึ่งต่างจาก PKI",
+ ["Web of Trust ที่ผู้ใช้รับรอง key ของกันและกัน","ลำดับชั้นจาก Root CA","Certificate Transparency","Kerberos Ticket"],
+ "PGP ให้ผู้ใช้เซ็นรับรอง key กันเองเป็นเครือข่าย ส่วน PKI ใช้ CA เป็นลำดับชั้นจาก Root"],
+["LUKS2 รองรับ key slot ได้สูงสุดกี่ช่อง และใช้ฟังก์ชันใดแปลงรหัสผ่านเป็น key",
+ ["32 ช่อง ใช้ Argon2id","8 ช่อง ใช้ MD5","32 ช่อง ใช้ SHA-1","1 ช่อง ใช้ bcrypt"],
+ "LUKS2 มีได้ 32 key slot และใช้ Argon2id (LUKS1 ใช้ PBKDF2) แต่ละ slot ห่อ master key ไว้"],
+["ทำไมการเปลี่ยนรหัสผ่านของดิสก์ LUKS จึงไม่ต้องเข้ารหัสดิสก์ใหม่ทั้งหมด",
+ ["เพราะข้อมูลเข้ารหัสด้วย master key ส่วนรหัสผ่านใช้แค่ห่อ master key ใน key slot","เพราะ LUKS ไม่ได้เข้ารหัสข้อมูลจริง","เพราะรหัสผ่านถูกเก็บแบบ plaintext","เพราะใช้ asymmetric encryption"],
+ "ข้อมูลถูกเข้ารหัสด้วย master volume key เปลี่ยนรหัสผ่านแค่ห่อ master key ใหม่ใน slot จึงเร็ว แต่ถ้า header หายข้อมูลจะกู้ไม่ได้"],
+["Envelope Encryption คืออะไร",
+ ["ใช้ DEK เข้ารหัสข้อมูล แล้วใช้ KEK เข้ารหัส DEK อีกชั้น","เข้ารหัสอีเมลด้วยซองอิเล็กทรอนิกส์","ใช้ key เดียวเข้ารหัสทุกอย่าง","เก็บ key ไว้ในไฟล์เดียวกับข้อมูล"],
+ "แยก Data Encryption Key กับ Key Encryption Key ทำให้หมุนเวียนและจัดการ key ได้ง่าย และ KEK สามารถเก็บใน HSM/KMS"],
+["วงจรชีวิตของ key ตาม NIST SP 800-57 เริ่มต้นและสิ้นสุดที่ขั้นใด",
+ ["เริ่มที่ Generation สิ้นสุดที่ Destruction","เริ่มที่ Distribution สิ้นสุดที่ Revocation","เริ่มที่ Usage สิ้นสุดที่ Rotation","เริ่มที่ Storage สิ้นสุดที่ Backup"],
+ "7 ขั้น: Generation → Distribution → Storage → Usage → Rotation → Revocation → Destruction"]
+]);
+
+add(7, [
+["PKI ถูกสร้างขึ้นเพื่อแก้ปัญหาใดเป็นหลัก",
+ ["ยืนยันว่า public key เป็นของเจ้าของตัวจริง (Public Key Distribution Problem)","ทำให้การเข้ารหัสเร็วขึ้น","ลดขนาดของ key","แทนที่ symmetric encryption"],
+ "Asymmetric แจก public key ได้ แต่ไม่รู้ว่าเป็นของใครจริง PKI ให้ CA รับรองการผูก key กับตัวตน ป้องกัน MITM"],
+["ทำไม Root CA จึงควรเก็บแบบ offline",
+ ["เพราะถ้า Root CA ถูกเจาะ ความเชื่อถือทั้งระบบจะพัง จึงต้องลดโอกาสโดนโจมตี","เพราะ Root CA ไม่จำเป็นต้องใช้งานเลย","เพราะ Root CA ไม่มี private key","เพื่อให้ออกใบรับรองได้เร็วขึ้น"],
+ "Root CA เป็น Trust Anchor ของทั้ง chain จึงเก็บแบบ air-gapped/HSM และให้ Intermediate CA ทำหน้าที่ออกใบในชีวิตประจำวัน"],
+["ข้อดีของการมี Intermediate CA คือข้อใด",
+ ["หาก Intermediate ถูกเจาะ สามารถเพิกถอนได้โดยไม่กระทบ Root","ทำให้ไม่ต้องตรวจ chain","ทำให้ใบรับรองไม่มีวันหมดอายุ","ทำให้ไม่ต้องใช้ Trust Store"],
+ "Intermediate ช่วยแยกความเสี่ยง Root เก็บ offline ได้ และแบ่ง Intermediate ตามวัตถุประสงค์"],
+["ใบรับรอง X.509 เวอร์ชันใดที่เริ่มมี Extensions เช่น SAN และ Basic Constraints",
+ ["v3","v1","v2","v4"],
+ "X.509 v3 (1996) เพิ่ม Extensions ซึ่งปัจจุบันใช้เป็นมาตรฐาน"],
+["Extension ใดบอกชื่อโดเมนทั้งหมดที่ใบรับรองใช้ได้",
+ ["Subject Alternative Name (SAN)","Basic Constraints","Key Usage","Authority Key Identifier"],
+ "SAN ระบุ DNS name/IP ที่ใช้ได้ ส่วน Basic Constraints บอกว่าเป็น CA ได้หรือไม่ และ Key Usage จำกัดการใช้ key"],
+["ไฟล์ใบรับรองรูปแบบใดเป็น Base64 ที่ขึ้นต้นด้วย -----BEGIN CERTIFICATE-----",
+ ["PEM","DER","PKCS#12","CRL"],
+ "PEM = Base64 อ่านเป็นข้อความได้ ส่วน DER เป็น binary และ PKCS#12 รวม key กับใบรับรองไว้ด้วยกัน"],
+["การที่ CSR ถูกเซ็นด้วย private key ของผู้ขอ มีจุดประสงค์เพื่ออะไร",
+ ["พิสูจน์ว่าผู้ขอครอบครอง private key คู่กับ public key ใน CSR จริง (Proof of Possession)","เข้ารหัส CSR ไม่ให้ CA อ่าน","ให้ CA นำ private key ไปเก็บ","ลดขนาดไฟล์ CSR"],
+ "CSR มี public key และข้อมูลผู้ขอ การเซ็นด้วย private key พิสูจน์ว่าถือ key จริง ส่วน private key ไม่เคยถูกส่งให้ CA"],
+["Serial Number ของใบรับรองควรมีความสุ่ม (entropy) อย่างน้อยกี่บิต",
+ ["64 บิต","8 บิต","16 บิต","20 บิต"],
+ "CA/Browser Forum กำหนดอย่างน้อย 64 บิต เพื่อลดโอกาสชนกันและกันการโจมตีแบบ hash collision"],
+["ข้อใดคือข้อดีของ OCSP Stapling",
+ ["เซิร์ฟเวอร์ไปขอสถานะจาก OCSP เองแล้วแนบมาใน TLS handshake ทำให้เร็วขึ้นและ CA ไม่รู้ว่าผู้ใช้เข้าเว็บใด","ทำให้ไม่ต้องมีใบรับรอง","ทำให้ CRL มีขนาดใหญ่ขึ้น","ทำให้ client ต้องดาวน์โหลด CRL ทั้งไฟล์"],
+ "OCSP ปกติให้ client ถาม CA เอง ช้าและรั่วความเป็นส่วนตัว Stapling ให้เซิร์ฟเวอร์แนบผลที่ CA เซ็นมาให้เลย"],
+["ข้อจำกัดของ CRL เมื่อเทียบกับ OCSP คือข้อใด",
+ ["ไฟล์ใหญ่ขึ้นเรื่อยๆ และอัปเดตเป็นรอบจึงล่าช้า","ตรวจสถานะได้ทีละใบแบบ real-time","ไม่ต้องมีลายเซ็น CA","ใช้ได้เฉพาะ Let's Encrypt"],
+ "CRL เป็นรายการทั้งหมดที่ออกเป็นรอบ ส่วน OCSP ถามสถานะทีละใบเกือบ real-time"],
+["ข้อใดถูกต้องเกี่ยวกับ Let's Encrypt",
+ ["ใช้โปรโตคอล ACME ออกใบรับรองแบบ DV อายุ 90 วันโดยอัตโนมัติ","ออกใบรับรองแบบ EV อายุ 2 ปี","ต้องส่งเอกสารบริษัทเพื่อยืนยัน","ใช้ได้เฉพาะเครือข่ายภายใน"],
+ "Let's Encrypt ใช้ ACME (RFC 8555) เช่น HTTP-01 challenge ผ่าน certbot ออกเฉพาะ DV อายุ 90 วัน"],
+["คุณสมบัติสำคัญของ HSM ในการเก็บ private key คือข้อใด",
+ ["Key ไม่สามารถถูกส่งออกจากอุปกรณ์ได้ (non-exportable)","Key ถูกเก็บเป็นไฟล์ข้อความ","ทุกคนดาวน์โหลด key ได้","ไม่ต้องใช้รหัสผ่าน"],
+ "HSM ทำงานเข้ารหัส/เซ็นภายในฮาร์ดแวร์ key ไม่ออกมานอกอุปกรณ์ จึงเหมาะกับ Root CA"],
+["Certificate Transparency (CT) เกิดขึ้นจากเหตุการณ์ใด",
+ ["DigiNotar ออกใบรับรองปลอมให้โดเมน Google ในปี 2011","การรั่วไหลของ Log4Shell","Heartbleed ในปี 2014","การโจมตี WannaCry"],
+ "เหตุ DigiNotar 2011 ทำให้ต้องมีระบบบันทึกใบรับรองทุกใบลง log แบบ append-only ตรวจสอบได้"],
+["Certificate Transparency log ใช้โครงสร้างข้อมูลใด และหลักฐานว่าใบรับรองถูกบันทึกแล้วเรียกว่าอะไร",
+ ["Merkle Tree และ SCT","Linked List และ CSR","Hash Table และ OCSP","Binary Tree และ CRL"],
+ "CT ใช้ Merkle Tree (proof ขนาดเล็ก log₂n) และออก Signed Certificate Timestamp (SCT) เป็นหลักฐาน"],
+["คำแนะนำในการทำ Certificate Pinning คือข้อใด",
+ ["Pin ที่ Intermediate CA เพื่อลดความเสี่ยง Pin Breakage","Pin ที่ leaf certificate ทุกครั้ง","ไม่ควร pin เลยในทุกกรณี","Pin ที่ IP address แทน"],
+ "Pin ที่ leaf จะพังทุกครั้งที่ต่ออายุใบ การ pin ที่ Intermediate ยังกัน MITM ได้และยืดหยุ่นกว่า"]
+]);
+
+add(8, [
+["ข้อใดเรียงความหมายของ AAA ได้ถูกต้อง",
+ ["Authentication = คุณคือใคร, Authorization = ทำอะไรได้, Accounting = ทำอะไรไปแล้ว","Authentication = ทำอะไรได้, Authorization = คุณคือใคร, Accounting = ค่าใช้จ่าย","Authorization = บันทึก log, Accounting = ยืนยันตัวตน, Authentication = ให้สิทธิ์","ทั้งสามคือการยืนยันตัวตนแบบเดียวกัน"],
+ "AuthN ยืนยันตัวตน, AuthZ ตัดสินสิทธิ์, Accounting บันทึกการกระทำเพื่อตรวจสอบย้อนหลัง"],
+["ข้อใด 'ไม่ใช่' Multi-Factor Authentication ที่แท้จริง",
+ ["รหัสผ่าน + คำถามรักษาความปลอดภัย","รหัสผ่าน + รหัส TOTP จากแอป","PIN + ลายนิ้วมือ","รหัสผ่าน + Security Key (FIDO2)"],
+ "MFA ต้องใช้ปัจจัยต่างประเภท รหัสผ่านและคำถามลับเป็น Something you know ทั้งคู่ จึงเป็นปัจจัยเดียว"],
+["ลายนิ้วมือจัดเป็นปัจจัยยืนยันตัวตนประเภทใด",
+ ["Something you are","Something you have","Something you know","Somewhere you are"],
+ "ข้อมูลชีวมิติ (ลายนิ้วมือ ใบหน้า) = Something you are ส่วน token = have และรหัสผ่าน = know"],
+["TOTP แตกต่างจาก HOTP อย่างไร",
+ ["TOTP อิงเวลา (ปกติเปลี่ยนทุก 30 วินาที) ส่วน HOTP อิงตัวนับ","TOTP อิงตัวนับ ส่วน HOTP อิงเวลา","TOTP ไม่ใช้ secret key","HOTP ใช้ได้เฉพาะ SMS"],
+ "TOTP (RFC 6238) ใช้ T = ⌊(t−T₀)/30⌋ ส่วน HOTP (RFC 4226) ใช้ counter ที่เพิ่มทุกครั้งที่ใช้"],
+["เวลา Unix t = 1,735,000,090 วินาที, T₀ = 0, X = 30 ค่า T ของ TOTP คือเท่าใด",
+ ["57,833,336","57,833,337","1,735,000,090","52,050,002"],
+ "T = ⌊1,735,000,090 / 30⌋ = ⌊57,833,336.33⌋ = 57,833,336"],
+["ผู้โจมตีส่ง push notification ขออนุมัติล็อกอินซ้ำๆ จนผู้ใช้รำคาญแล้วกดยอมรับ วิธีป้องกันที่เหมาะสมคือข้อใด",
+ ["Number Matching และจำกัดจำนวนครั้ง","ใช้ SMS OTP แทน","เปลี่ยนรหัสผ่านทุกเดือน","ปิด MFA"],
+ "นี่คือ MFA Fatigue/Push Bombing การให้ผู้ใช้พิมพ์ตัวเลขที่ตรงกับหน้าจอทำให้กดยอมรับมั่วไม่ได้"],
+["ทำไม FIDO2/WebAuthn จึงป้องกัน Phishing ได้",
+ ["เพราะ credential ผูกกับโดเมนของเว็บจริง เว็บปลอมจึงขอลายเซ็นที่ใช้ได้ไม่ได้","เพราะใช้ SMS ส่งรหัส","เพราะเก็บรหัสผ่านไว้บนเซิร์ฟเวอร์","เพราะใช้คำถามลับ"],
+ "FIDO2 ใช้ public key cryptography โดย private key อยู่ในอุปกรณ์ และผูกกับ origin ของเว็บ จึงกันทั้ง phishing และ AiTM"],
+["ทำไมไม่ควรเก็บรหัสผ่านด้วย SHA-256 เพียงอย่างเดียว",
+ ["เพราะ SHA-256 คำนวณเร็วมาก ผู้โจมตีจึง brute force ได้เร็ว","เพราะ SHA-256 ถูกพบ collision แล้ว","เพราะ SHA-256 ถอดรหัสกลับได้","เพราะ SHA-256 ใช้ key"],
+ "Password hashing ต้อง 'ช้าโดยตั้งใจ' จึงใช้ bcrypt, scrypt, Argon2 ที่ปรับต้นทุนได้"],
+["bcrypt ที่ cost = 10 ใช้เวลา 65 ms ถ้าเพิ่มเป็น cost = 12 จะใช้เวลาประมาณเท่าใด",
+ ["260 ms","130 ms","78 ms","650 ms"],
+ "T(c) = T₀ × 2ᶜ เพิ่ม cost 2 ระดับ = ช้าลง 2² = 4 เท่า → 65 × 4 = 260 ms"],
+["Salt แตกต่างจาก Pepper อย่างไร",
+ ["Salt สุ่มต่อผู้ใช้และเก็บคู่กับ hash ส่วน Pepper เป็นค่าลับกลางเก็บแยกจากฐานข้อมูล","Salt เก็บแยกจากฐานข้อมูล ส่วน Pepper เก็บคู่กับ hash","ทั้งสองเป็นค่าเดียวกัน","Salt ใช้เข้ารหัส ส่วน Pepper ใช้ถอดรหัส"],
+ "Salt ทำให้รหัสซ้ำกันได้ hash ต่างกันและกัน Rainbow Table ส่วน Pepper ช่วยเมื่อฐานข้อมูลรั่วแต่ config ไม่รั่ว"],
+["ตามแนวทาง NIST SP 800-63B ข้อใดเป็นสิ่งที่ 'ไม่ควร' ทำ",
+ ["บังคับให้เปลี่ยนรหัสผ่านตามรอบเวลาโดยไม่มีเหตุจำเป็น","ตรวจรหัสผ่านกับรายการรหัสที่เคยรั่ว","รองรับรหัสผ่านยาวอย่างน้อย 64 ตัว","บังคับ MFA สำหรับบัญชีสิทธิ์สูง"],
+ "NIST เลิกแนะนำการบังคับเปลี่ยนรหัสตามรอบและกฎความซับซ้อนที่เข้มเกินไป เพราะทำให้ผู้ใช้ตั้งรหัสที่เดาง่าย"],
+["ข้อใดถูกต้องเกี่ยวกับ Payload ของ JWT",
+ ["ถูกเข้ารหัสแบบ Base64URL เท่านั้น ใครก็อ่านได้ จึงห้ามใส่ข้อมูลลับ","ถูกเข้ารหัสด้วย AES ทุกครั้ง","อ่านได้เฉพาะเซิร์ฟเวอร์ที่มี private key","ไม่สามารถถอดรหัสได้"],
+ "JWT ปกติ (JWS) ถูกเซ็นเพื่อกันแก้ไข แต่ไม่ได้เข้ารหัส Base64URL เป็นแค่ encoding"],
+["OAuth 2.0 เป็นโปรโตคอลสำหรับอะไร และสิ่งใดเพิ่มความสามารถด้าน authentication ให้",
+ ["Authorization และ OpenID Connect เพิ่ม ID Token","Authentication และ SAML เพิ่ม Access Token","Encryption และ TLS เพิ่ม Session Key","Accounting และ Kerberos เพิ่ม Ticket"],
+ "OAuth 2.0 มอบสิทธิ์เข้าถึงทรัพยากร (Authorization) ส่วน OIDC สร้างบน OAuth เพิ่ม ID Token (JWT) เพื่อบอกว่าผู้ใช้คือใคร"],
+["Grant type ใดของ OAuth 2.0 แนะนำสำหรับเว็บและแอปมือถือเพราะปลอดภัยที่สุด",
+ ["Authorization Code + PKCE","Implicit Grant","Resource Owner Password","Client Credentials"],
+ "Authorization Code + PKCE ป้องกันการดักขโมย code ส่วน Client Credentials ใช้สำหรับเครื่องคุยกับเครื่อง (M2M)"],
+["ใน Kerberos ผู้ใช้ต้องได้รับสิ่งใดก่อน เพื่อนำไปขอ Service Ticket",
+ ["TGT (Ticket Granting Ticket) จาก Authentication Server","Service Ticket จากเซิร์ฟเวอร์ปลายทาง","JWT จาก OAuth Server","Certificate จาก CA"],
+ "ลำดับ: ขอ TGT จาก AS → ใช้ TGT ขอ Service Ticket จาก TGS → ยื่น Service Ticket ให้บริการ"],
+["แบบจำลองการควบคุมการเข้าถึงใดที่ตัดสินสิทธิ์จากหลายคุณลักษณะ เช่น แผนก ช่วงเวลา และบทบาท",
+ ["ABAC","RBAC","DAC","MAC"],
+ "ABAC ใช้ attribute หลายมิติ ยืดหยุ่นสุดแต่ซับซ้อนสุด ส่วน RBAC อิงบทบาทอย่างเดียว"],
+["SELinux เป็นตัวอย่างของแบบจำลองการควบคุมการเข้าถึงแบบใด",
+ ["MAC (Mandatory Access Control)","DAC (Discretionary Access Control)","RBAC","ABAC"],
+ "MAC ให้ระบบกลางบังคับนโยบาย เจ้าของไฟล์เปลี่ยนเองไม่ได้ ส่วน chmod/chown เป็น DAC"],
+["นักศึกษาเปลี่ยน id ใน URL จาก /grade?id=101 เป็น /grade?id=102 แล้วเห็นเกรดเพื่อน นี่คือ Privilege Escalation แบบใด",
+ ["Horizontal (IDOR)","Vertical","Lateral Phishing","Replay"],
+ "เข้าถึงข้อมูลผู้ใช้ระดับเดียวกัน = Horizontal ส่วน Vertical คือยกระดับตัวเองเป็นผู้ดูแลระบบ"],
+["ในระบบ Biometric หากปรับ threshold ให้เข้มงวดขึ้น จะเกิดอะไรขึ้น",
+ ["FAR ลดลง แต่ FRR เพิ่มขึ้น","FAR และ FRR ลดลงทั้งคู่","FAR เพิ่มขึ้น แต่ FRR ลดลง","EER จะเป็นศูนย์"],
+ "เข้มขึ้น = ปลอมผ่านยากขึ้น (FAR ลด) แต่คนจริงถูกปฏิเสธบ่อยขึ้น (FRR เพิ่ม) จุดที่เท่ากันคือ EER"],
+["Just-In-Time (JIT) Access หมายถึงข้อใด",
+ ["ให้สิทธิ์สูงชั่วคราวเมื่อจำเป็น แล้วเพิกถอนอัตโนมัติ","ให้สิทธิ์ผู้ดูแลระบบถาวรตลอดเวลา","ให้ทุกคนเข้าระบบได้ทันที","ล็อกอินได้เฉพาะเวลางาน"],
+ "JIT ลด Standing Privilege ซึ่งเป็นเป้าหมายหลักของผู้โจมตี เป็นส่วนหนึ่งของ PAM"]
+]);
+
+add(9, [
+["หลัก 'Default Deny' ในการตั้งค่าไฟร์วอลล์หมายถึงข้อใด",
+ ["ปฏิเสธทุกทราฟฟิกเป็นค่าเริ่มต้น แล้วเปิดเฉพาะที่จำเป็น","อนุญาตทุกทราฟฟิกแล้วบล็อกเฉพาะที่อันตราย","ปฏิเสธเฉพาะทราฟฟิกขาออก","ปิดไฟร์วอลล์เมื่อไม่ใช้งาน"],
+ "Default Deny ปลอดภัยกว่าเพราะสิ่งที่ไม่ได้ระบุไว้จะถูกบล็อกทั้งหมด"],
+["Stateful firewall ต่างจาก Stateless อย่างไร",
+ ["Stateful จำสถานะการเชื่อมต่อด้วย connection tracking ทำให้ขากลับผ่านอัตโนมัติ","Stateful ตรวจทีละแพ็กเก็ตโดยไม่จำอะไร","Stateless ใช้ทรัพยากรมากกว่า","Stateless ปลอดภัยกว่าเสมอ"],
+ "Stateful ใช้ conntrack ตรวจทั้ง session เขียนกฎขาเดียวก็พอ ส่วน Stateless ต้องเขียนกฎทั้งขาไปและขากลับ"],
+["แพ็กเก็ต FTP data channel ที่เกิดจากการเชื่อมต่อ control เดิม จะมีสถานะ conntrack ใด",
+ ["RELATED","NEW","ESTABLISHED","INVALID"],
+ "RELATED = การเชื่อมต่อใหม่ที่เกี่ยวข้องกับการเชื่อมต่อเดิม (เช่น FTP data, ICMP error)"],
+["ใน iptables แพ็กเก็ตที่เดินทาง 'ผ่าน' เกตเวย์ไปยังเครื่องอื่น (ไม่ได้ส่งถึงตัวเกตเวย์เอง) จะผ่าน chain ใดใน filter table",
+ ["FORWARD","INPUT","OUTPUT","PREROUTING"],
+ "INPUT = เข้าเครื่องนี้, OUTPUT = ออกจากเครื่องนี้, FORWARD = ผ่านเครื่องนี้ไปที่อื่น ส่วน PREROUTING อยู่ใน nat/mangle/raw"],
+["Target DROP กับ REJECT ใน iptables ต่างกันอย่างไร",
+ ["DROP ทิ้งเงียบไม่ตอบ ส่วน REJECT ทิ้งแล้วตอบกลับ เช่น ICMP port unreachable","DROP ตอบกลับ ส่วน REJECT ทิ้งเงียบ","DROP บันทึก log ส่วน REJECT ไม่บันทึก","ไม่ต่างกัน"],
+ "DROP ทำให้ผู้สแกนต้องรอ timeout (เห็นเป็น filtered) ส่วน REJECT ตอบทันที"],
+["ต้องการให้ผู้ใช้ภายนอกที่เข้าพอร์ต 443 ของเกตเวย์ ถูกส่งต่อไปยังเว็บเซิร์ฟเวอร์ใน DMZ ต้องใช้ target ใด",
+ ["DNAT ใน nat table","MASQUERADE","LOG","SNAT"],
+ "DNAT เปลี่ยนปลายทาง (port forwarding) ส่วน MASQUERADE/SNAT เปลี่ยนต้นทางเมื่อเครื่องภายในออกอินเทอร์เน็ต"],
+["กฎ iptables '--limit 3/min --limit-burst 5' จะเติม token ใหม่ทุกกี่วินาที",
+ ["20 วินาที","3 วินาที","5 วินาที","60 วินาที"],
+ "3 ครั้งต่อนาที = 1 token ทุก 60/3 = 20 วินาที โดยปล่อยผ่านได้ทันที 5 แพ็กเก็ตแรก (burst)"],
+["ข้อใดเป็นข้อได้เปรียบของ nftables เมื่อเทียบกับ iptables",
+ ["มี Set/Map ในตัวที่ค้นหาเฉลี่ย O(1) และรองรับ atomic rule replacement","ต้องเขียนกฎแยก IPv4 และ IPv6 เสมอ","ทำงานได้เฉพาะ layer 7","ไม่ต้องใช้ Netfilter"],
+ "nftables ใช้ syntax เดียวสำหรับทุก family (inet) มี Set/Map และอัปเดตกฎแบบ atomic ส่วน iptables ไล่ทีละกฎ O(n)"],
+["คำสั่ง UFW ใดใช้จำกัดอัตราการเชื่อมต่อพอร์ต SSH เพื่อป้องกัน brute force",
+ ["ufw limit 22/tcp","ufw allow 22/tcp","ufw deny 22/tcp","ufw reject 22/tcp"],
+ "ufw limit จะปฏิเสธ IP ที่พยายามเชื่อมต่อถี่เกินกำหนด ส่วน allow เปิดอย่างเดียว"],
+["ในการออกแบบ DMZ ข้อใดถูกต้อง",
+ ["ทราฟฟิกจาก DMZ เข้าเครือข่ายภายในควรถูกห้ามโดยปกติ","DMZ ควรเข้าถึงเครือข่ายภายในได้ทั้งหมด","อินเทอร์เน็ตควรเข้า DMZ ได้ทุกพอร์ต","DMZ ควรอยู่ในวงเดียวกับ Management"],
+ "เซิร์ฟเวอร์ใน DMZ เสี่ยงโดนเจาะสูง ถ้าอนุญาต DMZ→Internal ผู้โจมตีจะ pivot เข้าภายในได้"],
+["Subnet 10.10.100.0/27 มีจำนวน host ที่ใช้งานได้กี่เครื่อง",
+ ["30","32","62","14"],
+ "H = 2^(32−27) − 2 = 2⁵ − 2 = 30 (ลบ network และ broadcast address)"],
+["VLAN ตามมาตรฐาน IEEE 802.1Q ใช้ VLAN ID กี่บิต",
+ ["12 บิต (ใช้ได้ 4,094 VLAN)","8 บิต (ใช้ได้ 254 VLAN)","16 บิต (ใช้ได้ 65,534 VLAN)","24 บิต"],
+ "VLAN ID 12 บิต = 4,096 ค่า หักค่าสงวน 2 ค่า เหลือ 4,094"],
+["ทำไมไฟร์วอลล์แบบดั้งเดิม (L3–L4) จึงตรวจจับ SQL Injection บนพอร์ต 443 ไม่ได้",
+ ["เพราะมองเห็นเพียง IP/Port/Protocol ไม่เห็นเนื้อหา payload ของแอปพลิเคชัน","เพราะ SQL Injection ใช้ UDP","เพราะพอร์ต 443 ถูกบล็อกเสมอ","เพราะไฟร์วอลล์ปิด logging"],
+ "SQLi อยู่ในเนื้อหา HTTP (L7) ต้องใช้ WAF หรือ NGFW ที่ตรวจถึง payload"],
+["ModSecurity คู่กับ OWASP Core Rule Set จัดเป็นอุปกรณ์ประเภทใด",
+ ["Web Application Firewall (WAF)","Stateless Packet Filter","VPN Gateway","Proxy แบบ SOCKS"],
+ "ModSecurity + CRS เป็น WAF ทำงานที่ L7 เมื่อตรวจพบการโจมตีจะตอบ 403 Forbidden"],
+["ทำไมควรวางกฎ ESTABLISHED,RELATED ไว้ลำดับแรกของ chain",
+ ["เพราะไฟร์วอลล์ใช้หลัก first-match และแพ็กเก็ตส่วนใหญ่เป็นของ session ที่มีอยู่แล้ว ช่วยลดการเปรียบเทียบ","เพราะกฎแรกจะถูกละเว้นเสมอ","เพราะทำให้ทุกแพ็กเก็ตถูกบล็อก","เพราะกฎล่างสุดทำงานก่อน"],
+ "ตัวอย่างในบท: 80% เป็น ESTABLISHED วางไว้อันดับ 1 ลดจาก 14 เหลือ 2.8 ครั้งต่อแพ็กเก็ต (เร็วขึ้นราว 5 เท่า)"],
+["การทดสอบกฎไฟร์วอลล์แบบ 'Negative test' หมายถึงข้อใด",
+ ["ทดสอบว่าทราฟฟิกที่ไม่ควรผ่านถูกบล็อกจริง","ทดสอบว่าทราฟฟิกที่ควรผ่านผ่านได้","ทดสอบความเร็วของไฟร์วอลล์","ทดสอบโดยปิดไฟร์วอลล์"],
+ "ต้องทดสอบทั้ง Positive (ควรผ่าน) และ Negative (ควรถูกปฏิเสธ) เช่น nmap จาก DMZ ไปเครือข่าย Staff ควรเห็นเป็น filtered"]
+]);
+
+add(10, [
+["Forward Proxy ทำงานอยู่ฝั่งใดและปกป้องใคร",
+ ["ฝั่ง client ปกป้องและควบคุมผู้ใช้ภายใน ปลายทางเห็นเพียง IP ของ proxy","ฝั่ง server ปกป้องเว็บเซิร์ฟเวอร์","อยู่ในอินเทอร์เน็ต ไม่ปกป้องใคร","อยู่ใน DNS server"],
+ "Forward Proxy (เช่น Squid) ใช้กรองเว็บ cache และ log ให้ผู้ใช้ในองค์กร ส่วนการปกป้องเซิร์ฟเวอร์เป็นงานของ Reverse Proxy"],
+["ข้อใดเป็นหน้าที่ของ Reverse Proxy",
+ ["Load Balancing, TLS Termination และซ่อนโครงสร้างเซิร์ฟเวอร์หลังบ้าน","กรองเว็บที่พนักงานเข้าใช้","ซ่อน IP ของผู้ใช้ภายใน","แจก IP ให้เครื่องลูกข่าย"],
+ "Reverse Proxy (Nginx, HAProxy, Traefik, Envoy) รับคำขอจากอินเทอร์เน็ตแทนเซิร์ฟเวอร์แล้วกระจายไป backend"],
+["Transparent Proxy มีลักษณะอย่างไร",
+ ["ผู้ใช้ไม่ต้องตั้งค่าใดๆ ในเครื่อง ทราฟฟิกถูกดักและส่งเข้า proxy ที่ระดับเครือข่าย","ผู้ใช้ต้องตั้ง IP:Port ของ proxy ในเบราว์เซอร์","เป็น proxy ที่ไม่เก็บ log","ใช้ได้เฉพาะ HTTPS"],
+ "Transparent Proxy ใช้ iptables REDIRECT, WCCP หรือ Policy-Based Routing ส่วนแบบที่ต้องตั้งค่าเองคือ Explicit Proxy"],
+["เงื่อนไขสำคัญที่ทำให้ SSL Bumping (HTTPS Inspection) ทำงานได้โดยไม่เกิดคำเตือนใบรับรอง คือข้อใด",
+ ["เครื่อง client ต้องติดตั้ง Enterprise Root CA ขององค์กรไว้ใน trust store","เว็บปลายทางต้องใช้ HTTP","ต้องปิด TLS ในเบราว์เซอร์","ต้องใช้ใบรับรองจาก Let's Encrypt"],
+ "Proxy สร้างใบรับรองปลอมของเว็บปลายทางโดยเซ็นด้วย Enterprise CA ถ้า client เชื่อถือ CA นี้จึงไม่ขึ้นเตือน"],
+["แอปพลิเคชันใดมีโอกาสใช้งานไม่ได้เมื่อผ่าน SSL Bumping",
+ ["แอปที่ทำ Certificate Pinning","เว็บที่ใช้ HTTP ธรรมดา","แอปที่ใช้ DNS","แอปที่ไม่ใช้เครือข่าย"],
+ "Certificate Pinning ตรวจว่าใบรับรองต้องตรงกับที่ฝังไว้ ใบที่ proxy สร้างใหม่จึงถูกปฏิเสธ"],
+["SOCKS Proxy ทำงานที่ชั้นใดของ OSI",
+ ["Session Layer","Network Layer","Data Link Layer","Physical Layer"],
+ "SOCKS อยู่ระดับ Session ไม่ผูกกับโปรโตคอลแอปพลิเคชัน จึงส่งต่อทราฟฟิกได้หลากหลาย"],
+["ความสามารถใดที่ SOCKS5 มี แต่ SOCKS4 ไม่มี",
+ ["รองรับ UDP, Authentication และ IPv6","รองรับ TCP","ทำงานผ่านพอร์ตเดียว","ใช้ได้กับ HTTP เท่านั้น"],
+ "SOCKS5 เพิ่ม UDP, การยืนยันตัวตน, IPv6 และให้ proxy resolve DNS แทนได้"],
+["หลังจาก Proxy ตอบ '200 Connection Established' กับคำขอ HTTP CONNECT เกิดอะไรขึ้น",
+ ["Proxy ส่งต่อไบต์ดิบระหว่างสองฝั่งโดยอ่านเนื้อหาที่เข้ารหัสไม่ได้","Proxy ถอดรหัส TLS ทุกครั้ง","Proxy ปิดการเชื่อมต่อทันที","Proxy เปลี่ยนเป็น FTP"],
+ "HTTP CONNECT เปิด TCP tunnel ดิบ มักใช้กับ HTTPS proxy จึงเห็นแค่ปลายทาง ไม่เห็นเนื้อหา"],
+["ต้องการเข้าถึง PostgreSQL ที่ db.internal:5432 ซึ่งอยู่หลังเซิร์ฟเวอร์ SSH โดยเปิดพอร์ต 8080 บนเครื่องตัวเอง ต้องใช้คำสั่งใด",
+ ["ssh -L 8080:db.internal:5432 user@server","ssh -R 8080:db.internal:5432 user@server","ssh -D 8080 user@server","ssh -J 8080 user@server"],
+ "-L (Local forwarding) เปิดพอร์ตในเครื่องเรา ส่งผ่าน SSH ไปยังบริการฝั่งไกล"],
+["ต้องการเปิดเว็บที่รันบน localhost:3000 ของเครื่องตัวเอง ให้คนที่เข้าถึงเซิร์ฟเวอร์ระยะไกลใช้งานผ่านพอร์ต 9000 ต้องใช้ตัวเลือกใด",
+ ["-R (Remote forwarding)","-L (Local forwarding)","-D (Dynamic forwarding)","-X (X11 forwarding)"],
+ "-R 9000:localhost:3000 เปิดพอร์ตฝั่งเซิร์ฟเวอร์ชี้กลับมาที่บริการในเครื่องเรา (ถ้าให้เครื่องอื่นเข้าได้ต้อง GatewayPorts yes)"],
+["คำสั่ง ssh -D 1080 user@server ทำอะไร",
+ ["สร้าง SOCKS proxy ที่พอร์ต 1080 ส่งทราฟฟิกออกทางเซิร์ฟเวอร์โดยไม่ต้องระบุปลายทางล่วงหน้า","ส่งต่อพอร์ต 1080 ไปยังเซิร์ฟเวอร์ปลายทางเดียว","ปิดการเชื่อมต่อ SSH หลัง 1080 วินาที","ดาวน์โหลดไฟล์ขนาด 1080 KB"],
+ "-D = Dynamic forwarding ทำให้เครื่องเรากลายเป็น SOCKS proxy ใช้กับ curl --socks5 หรือเบราว์เซอร์ได้"],
+["Bastion Host / Jump Host มีประโยชน์ด้านความปลอดภัยอย่างไร",
+ ["เปิด SSH สู่อินเทอร์เน็ตเพียงจุดเดียว ลด attack surface แล้วค่อยเข้าเครื่องภายใน","ทำให้ไม่ต้องใช้รหัสผ่าน","ทำให้เครื่องภายในทุกเครื่องเปิดพอร์ตสู่อินเทอร์เน็ต","เข้ารหัสฮาร์ดดิสก์อัตโนมัติ"],
+ "หลัก Least Exposure ใช้ ssh -J หรือ ProxyJump และวาง bastion ให้ใกล้เป้าหมายเพื่อลด latency สะสม"],
+["ทำไมไม่ควรเปิด VNC สู่อินเทอร์เน็ตโดยตรง",
+ ["การยืนยันตัวตนแบบ DES อ่อนแอ รหัสผ่านสูงสุด 8 ตัว และไม่มี MFA ในโปรโตคอลพื้นฐาน","เพราะ VNC ใช้แบนด์วิดท์น้อยเกินไป","เพราะ VNC รองรับเฉพาะ Linux","เพราะ VNC เข้ารหัสแข็งแรงเกินไป"],
+ "ควรผูก VNC กับ localhost (vncserver -localhost yes) แล้วเข้าผ่าน SSH tunnel"],
+["VNC display :1 ใช้พอร์ตใด",
+ ["5901","5900","3389","9090"],
+ "VNC ใช้ 5900 + เลข display ดังนั้น :1 = 5901 ส่วน 3389 = RDP และ 9090 = Cockpit"],
+["Cockpit Web Console ใช้พอร์ตเริ่มต้นใด",
+ ["9090","8080","3128","443"],
+ "Cockpit เข้าผ่านเว็บที่พอร์ต 9090 ส่วน 3128 = Squid"],
+["ข้อใด 'ไม่ใช่' แนวปฏิบัติที่ดีในการรักษาความปลอดภัย Remote Access",
+ ["เปิด VNC ตรงสู่อินเทอร์เน็ตเพื่อความสะดวก","ใช้ SSH แบบ key-based เท่านั้น","เปิด MFA ให้บริการภายนอก รวมถึง Cockpit","เพิกถอน SSH key ทันทีเมื่อพนักงานลาออก"],
+ "Checklist ระบุชัดว่าห้ามเปิด VNC สู่อินเทอร์เน็ตโดยตรง (ความเสี่ยงสูงมาก)"]
+]);
+
+const $=s=>document.querySelector(s);
+const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const quizCh=[...new Set(Q.map(q=>q.c))];
+let cur=1;
+// theme
+$('#theme').onclick=()=>{const r=document.documentElement;const dark=r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;r.dataset.theme=dark?'light':'dark';store.set('theme',r.dataset.theme)};
+const th=store.get('theme',null);if(th)document.documentElement.dataset.theme=th;
+// tabs
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>showTab(b.dataset.t));
+function showTab(t){document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('on',x.dataset.t===t));$('#read').classList.toggle('hidden',t!=='read');$('#quiz').classList.toggle('hidden',t!=='quiz');if(t==='quiz'&&!S)home();scrollTo(0,0)}
+// reading
+function chips(){$('#chips').innerHTML=CH.map(c=>`<button class="chip ${c.n===cur?'on':''}" data-n="${c.n}">บท ${c.n}</button>`).join('');document.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{cur=+b.dataset.n;renderCh();scrollTo(0,0)})}
+function renderCh(){chips();const c=CH.find(x=>x.n===cur);const has=quizCh.includes(c.n);
+$('#chapter').innerHTML=`<div class="card"><span class="badge">บทที่ ${c.n}</span><div class="ch-title k">${c.t}</div><div class="en">${c.en}</div><div class="core">💡 ${c.core}</div>${c.note?`<div class="note">⚠️ ${c.note}</div>`:''}
+${c.s.map(s=>`<div class="sec"><h3>${s.h}</h3><ul>${s.p.map(p=>`<li>${p}</li>`).join('')}</ul></div>`).join('')}
+${c.f&&c.f.length?`<div class="box"><h3 class="k">🧮 สูตร/ตัวเลขที่ต้องจำ</h3><ul>${c.f.map(x=>`<li>${x}</li>`).join('')}</ul></div>`:''}
+<div class="box tip"><h3 class="k">🎯 จุดที่น่าจะออกสอบ</h3><ul>${c.tip.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+<div class="row">${has?`<button class="btn" id="go">ทำข้อสอบบทนี้ →</button>`:''}${c.n<CH.length?`<button class="btn ghost" id="next">บทถัดไป</button>`:''}</div></div>`;
+if(has)$('#go').onclick=()=>{showTab('quiz');start(Q.filter(q=>q.c===c.n),'บทที่ '+c.n,'c'+c.n)};
+if(c.n<CH.length)$('#next').onclick=()=>{cur++;renderCh();scrollTo(0,0)}}
+// quiz
+let S=null;
+function home(){S=null;const best=store.get('best',{});
+$('#quiz').innerHTML=`<div class="hero"><h2 class="k">พร้อมลุยยัง? 💪</h2><p>มีทั้งหมด ${Q.length} ข้อ ตอบแล้วเฉลยทันทีพร้อมเหตุผล</p><div class="row"><button class="btn" id="mix">สุ่มรวม 40 ข้อ</button><button class="btn ghost" id="all">ทำทั้งหมด</button></div></div>
+<div class="grid">${quizCh.map(n=>{const c=CH.find(x=>x.n===n);const k=Q.filter(q=>q.c===n).length;const b=best['c'+n];return `<button class="pick" data-n="${n}"><div class="k">บท ${n}</div><small>${c.t}</small><small>${k} ข้อ</small>${b!=null?`<div class="best">สถิติดีสุด ${b}%</div>`:''}</button>`}).join('')}</div>`;
+$('#mix').onclick=()=>start(shuffle(Q).slice(0,40),'สุ่มรวม 40 ข้อ','mix');
+$('#all').onclick=()=>start(shuffle(Q),'ทั้งหมด','all');
+document.querySelectorAll('.pick').forEach(b=>b.onclick=()=>start(Q.filter(q=>q.c===+b.dataset.n),'บทที่ '+b.dataset.n,'c'+b.dataset.n))}
+function start(list,label,key){S={list:shuffle(list).map(q=>({...q,order:shuffle([0,1,2,3])})),i:0,ok:0,streak:0,wrong:[],label,key};ask()}
+function ask(){const q=S.list[S.i],n=S.list.length;
+$('#quiz').innerHTML=`<div class="card"><div class="qtop"><span>${S.label} · ข้อ ${S.i+1}/${n}</span><span class="streak">${S.streak>=2?'🔥 '+S.streak+' ติด':''}</span></div><div class="bar"><i style="width:${S.i/n*100}%"></i></div>
+<div class="badge" style="margin-top:14px">บทที่ ${q.c}</div><div class="qtext">${q.q}</div>
+<div id="opts">${q.order.map((o,k)=>`<button class="opt" data-o="${o}"><span class="L">${'ABCD'[k]}</span><span>${q.o[o]}</span></button>`).join('')}</div><div id="after"></div>
+<div class="row"><button class="btn ghost" id="quit">ออก</button></div></div>`;
+$('#quit').onclick=home;
+document.querySelectorAll('.opt').forEach(b=>b.onclick=()=>answer(+b.dataset.o))}
+function answer(o){const q=S.list[S.i],right=o===0;
+document.querySelectorAll('.opt').forEach(b=>{b.disabled=true;const v=+b.dataset.o;if(v===0)b.classList.add('ok');else if(v===o)b.classList.add('bad')});
+if(right){S.ok++;S.streak++}else{S.streak=0;S.wrong.push({...q,pick:o})}
+const last=S.i===S.list.length-1;
+$('#after').innerHTML=`<div class="exp ${right?'ok':'bad'}"><div class="k">${right?'✅ ถูกต้อง!':'❌ ยังไม่ใช่'}</div>${right?'':`<div>คำตอบที่ถูก: <b>${q.o[0]}</b></div>`}<div style="margin-top:6px">${q.e}</div></div><div class="row"><button class="btn" id="nx">${last?'ดูผลคะแนน':'ข้อต่อไป →'}</button></div>`;
+$('#nx').onclick=()=>{if(last)done();else{S.i++;ask();scrollTo(0,0)}};
+$('#nx').scrollIntoView({behavior:'smooth',block:'nearest'})}
+function done(){const n=S.list.length,p=Math.round(S.ok/n*100);const best=store.get('best',{});if(best[S.key]==null||p>best[S.key]){best[S.key]=p;store.set('best',best)}
+const msg=p>=80?'สุดยอด! พร้อมสอบแล้ว 🏆':p>=60?'ดีมาก! ทวนข้อที่ผิดอีกรอบ 💪':'ไม่เป็นไร กลับไปอ่านแล้วลองใหม่ 📘';
+$('#quiz').innerHTML=`<div class="card" style="text-align:center"><div class="k" style="font-size:20px">${S.label}</div><div class="score">${p}%</div><div class="k" style="font-size:20px">${S.ok}/${n} ข้อ · ${msg}</div>
+<div class="row" style="justify-content:center">${S.wrong.length?`<button class="btn" id="redo">ทำเฉพาะข้อที่ผิด (${S.wrong.length})</button>`:''}<button class="btn ghost" id="back">กลับหน้าเลือกบท</button></div></div>
+${S.wrong.length?`<div class="card"><h3 class="k" style="margin-top:0">ทวนข้อที่ผิด</h3>${S.wrong.map(w=>`<div class="rev"><div><b>บท ${w.c}:</b> ${w.q}</div><div style="color:var(--bad)">คุณตอบ: ${w.o[w.pick]}</div><div style="color:var(--ok)">ที่ถูก: ${w.o[0]}</div><div class="sub">${w.e}</div></div>`).join('')}</div>`:''}`;
+const W=S.wrong.map(({pick,order,...q})=>q),L=S.label;
+if(W.length)$('#redo').onclick=()=>start(W,L+' (ข้อที่ผิด)','redo');
+$('#back').onclick=home;scrollTo(0,0)}
+renderCh();
+</script>
+</body>
+</html>
